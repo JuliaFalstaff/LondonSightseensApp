@@ -1,6 +1,6 @@
 package com.example.londonsightseensapp.presenter
 
-import com.example.londonsightseensapp.model.data.sights.Feature
+import com.example.londonsightseensapp.model.data.places.Feature
 import com.example.londonsightseensapp.model.places.IPlacesRepo
 import com.example.londonsightseensapp.navigation.IScreens
 import com.example.londonsightseensapp.view.IPlacesListPresenter
@@ -55,8 +55,7 @@ class PlacesPresenter(val place: IPlacesRepo, val router: Router, val screen: IS
     }
 
     private fun openPlaceInfo(place: PlacesItemView) {
-        //TODO
-//        router.navigateTo(screen.placesInfo( placesListPresenter.placesList[place.positionItem]))
+        router.navigateTo(screen.placesInfo( placesListPresenter.placesList[place.positionItem]))
     }
 
     fun backPressed(): Boolean {

@@ -1,9 +1,11 @@
 package com.example.londonsightseensapp.model.retrofit
 
 
-import com.example.londonsightseensapp.model.data.sights.FeaturesList
+import com.example.londonsightseensapp.model.data.placeinfo.Place
+import com.example.londonsightseensapp.model.data.places.FeaturesList
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RetrofitApi {
@@ -17,6 +19,11 @@ interface RetrofitApi {
             @Query("apikey") apiKey: String
     ) : Single<FeaturesList>
 
+    @GET("ru/places/xid/{xid}")
+    fun loadPlaceInfo(
+        @Path("xid") xid: String,
+        @Query("apikey") apiKey: String
+    ) : Single<Place>
 }
 
 

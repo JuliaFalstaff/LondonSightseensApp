@@ -1,6 +1,6 @@
 package com.example.londonsightseensapp.model.places
 
-import com.example.londonsightseensapp.model.data.sights.FeaturesList
+import com.example.londonsightseensapp.model.data.places.FeaturesList
 
 import io.reactivex.rxjava3.core.Single
 

@@ -2,7 +2,7 @@ package com.example.londonsightseensapp.model.places
 
 
 import com.example.londonsightseensapp.BuildConfig
-import com.example.londonsightseensapp.model.data.sights.FeaturesList
+import com.example.londonsightseensapp.model.data.places.FeaturesList
 import com.example.londonsightseensapp.model.retrofit.RetrofitApi
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
