@@ -2,12 +2,17 @@ package com.example.londonsightseensapp.model.places
 
 
 import com.example.londonsightseensapp.BuildConfig
-import com.example.londonsightseensapp.model.data.places.FeaturesList
+import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.retrofit.RetrofitApi
+import com.example.londonsightseensapp.network.INetworkState
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class PlacesRepoImpl(val api: RetrofitApi): IPlacesRepo {
+class PlacesRepoImpl(
+    val api: RetrofitApi,
+    val networkStatus: INetworkState,
+    val db: IRoomFeatureCache
+) : IPlacesRepo {
 
     companion object {
         const val API_KEY = BuildConfig.TRIP_MAP_API_KEY
@@ -17,11 +22,30 @@ class PlacesRepoImpl(val api: RetrofitApi): IPlacesRepo {
         const val LAT_MAX_LONDON: Double = 51.529515
     }
 
-
-    override fun loadPlacesByGeoParams(): Single<FeaturesList> =
-        api
-            .loadSights(LON_MIN_LONDON, LON_MAX_LONDON, LAT_MIN_LONDON, LAT_MAX_LONDON, API_KEY)
-            .subscribeOn(Schedulers.io())
+    override fun loadPlacesByGeoParams(): Single<List<Feature>> =
+        networkStatus.isOnlineSingle()
+            .flatMap { isOnline ->
+                if (isOnline) {
+                    api.loadSights(
+                        LON_MIN_LONDON,
+                        LON_MAX_LONDON,
+                        LAT_MIN_LONDON,
+                        LAT_MAX_LONDON,
+                        API_KEY
+                    )
+                        .flatMap { places ->
+                            Single.fromCallable {
+                                db.saveToDB(places)
+                                places
+                            }
+                        }
+                        .onErrorReturn {
+                            db.getFeaturesList()
+                        }
+                } else {
+                    Single.fromCallable {
+                        db.getFeaturesList()
+                    }
+                }.subscribeOn(Schedulers.io())
+            }
 }
-
-///ru/places/bbox?lon_min=-0.12574&lon_max=-0.111302&lat_min=51.50853&lat_max=51.529515&apikey=5ae2e3f221c38a28845f05b64f3414d1e25ff9d2003c4dc1b4e262e7

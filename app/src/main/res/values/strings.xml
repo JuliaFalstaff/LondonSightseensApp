@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LondonSightseensApp</string>
+    <string name="error_get_db">Database hasn\'t been created</string>
 </resources>

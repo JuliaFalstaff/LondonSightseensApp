@@ -1,6 +1,6 @@
 package com.example.londonsightseensapp.presenter
 
-import com.example.londonsightseensapp.model.data.places.Feature
+import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.places.IPlacesRepo
 import com.example.londonsightseensapp.navigation.IScreens
 import com.example.londonsightseensapp.view.IPlacesListPresenter
@@ -47,7 +47,7 @@ class PlacesPresenter(val place: IPlacesRepo, val router: Router, val screen: IS
             .subscribe(
                 { repos ->
                     placesListPresenter.placesList.clear()
-                    placesListPresenter.placesList.addAll(repos.features)
+                    placesListPresenter.placesList.addAll(repos)
                     viewState.updateList()
                 },
                 { error -> viewState.showError(error) }

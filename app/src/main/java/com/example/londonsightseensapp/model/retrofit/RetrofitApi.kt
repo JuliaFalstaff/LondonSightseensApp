@@ -1,8 +1,9 @@
 package com.example.londonsightseensapp.model.retrofit
 
 
-import com.example.londonsightseensapp.model.data.placeinfo.Place
-import com.example.londonsightseensapp.model.data.places.FeaturesList
+import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
+import com.example.londonsightseensapp.model.dataDTO.places.Feature
+import com.example.londonsightseensapp.model.dataDTO.places.FeaturesList
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -17,7 +18,7 @@ interface RetrofitApi {
             @Query("lat_min") latMin: Double,
             @Query("lat_max") latMax: Double,
             @Query("apikey") apiKey: String
-    ) : Single<FeaturesList>
+    ) : Single<List<Feature>>
 
     @GET("ru/places/xid/{xid}")
     fun loadPlaceInfo(

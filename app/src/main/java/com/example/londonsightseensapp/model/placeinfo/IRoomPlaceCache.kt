@@ -2,9 +2,8 @@ package com.example.londonsightseensapp.model.placeinfo
 
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
-import io.reactivex.rxjava3.core.Single
 
-interface IPlaceInfo {
-//    fun loadPlaceInfo(placeId: String): Single<Place>
-    fun loadPlaceInfo(featureId: Feature): Single<Place>
+interface IRoomPlaceCache {
+    fun saveToDB(place: Place, featureId: Feature?)
+    fun getPlace(feature: Feature?): Place
 }

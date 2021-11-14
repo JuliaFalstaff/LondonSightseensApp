@@ -1,4 +1,4 @@
-package com.example.londonsightseensapp.model.data.placeinfo
+package com.example.londonsightseensapp.model.dataDTO.placeinfo
 
 
 import android.os.Parcelable
@@ -10,20 +10,17 @@ import kotlinx.android.parcel.Parcelize
 data class Place(
     @SerializedName("xid")
     @Expose
-    val xid: String,
+    val xid: String?,
     @SerializedName("name")
     @Expose
-    val name: String,
+    val name: String?,
     @SerializedName("address")
     @Expose
     val address: Address,
 
-    @SerializedName("wikidata")
-    @Expose
-    val wikidata: String,
     @SerializedName("kinds")
     @Expose
-    val kinds: String,
+    val kinds: String?,
 
     @SerializedName("otm")
     @Expose
@@ -43,5 +40,4 @@ data class Place(
     @SerializedName("point")
     @Expose
     val point: Point
-
 ) : Parcelable

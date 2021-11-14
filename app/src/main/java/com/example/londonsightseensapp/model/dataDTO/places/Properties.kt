@@ -1,4 +1,4 @@
-package com.example.londonsightseensapp.model.data.places
+package com.example.londonsightseensapp.model.dataDTO.places
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
