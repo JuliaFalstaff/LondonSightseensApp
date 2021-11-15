@@ -3,6 +3,7 @@ package com.example.londonsightseensapp.model.places
 
 import com.example.londonsightseensapp.BuildConfig
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
+import com.example.londonsightseensapp.model.dataDTO.places.FeaturesList
 import com.example.londonsightseensapp.model.retrofit.RetrofitApi
 import com.example.londonsightseensapp.network.INetworkState
 import io.reactivex.rxjava3.core.Single
@@ -22,7 +23,9 @@ class PlacesRepoImpl(
         const val LAT_MAX_LONDON: Double = 51.529515
     }
 
-    override fun loadPlacesByGeoParams(): Single<List<Feature>> =
+    //Тут из-за типов соответствия все разъехалось
+
+    override fun loadPlacesByGeoParams(): Single<FeaturesList> =
         networkStatus.isOnlineSingle()
             .flatMap { isOnline ->
                 if (isOnline) {

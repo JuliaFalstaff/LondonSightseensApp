@@ -1,8 +1,9 @@
 package com.example.londonsightseensapp.model.places
 
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
+import com.example.londonsightseensapp.model.dataDTO.places.FeaturesList
 
 interface IRoomFeatureCache {
-    fun saveToDB(features: List<Feature>)
-    fun getFeaturesList(): List<Feature>
+    fun saveToDB(features: FeaturesList)
+    fun getFeaturesList(): FeaturesList
 }

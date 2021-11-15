@@ -13,9 +13,6 @@ data class RoomFeature (
     val type: String,
     @PrimaryKey
     val id: String,
-//    @Embedded
-//    val geometry: Geometry,
     @Embedded
-    val properties: Properties,
-
+    val properties: Properties
 )

@@ -1,12 +1,13 @@
 package com.example.londonsightseensapp.model.places
 
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
+import com.example.londonsightseensapp.model.dataDTO.places.FeaturesList
 import com.example.londonsightseensapp.model.room.DataBaseApp
 import com.example.londonsightseensapp.model.room.cache.RoomFeature
 
 class RoomFeatureCacheImpl(private val db: DataBaseApp) : IRoomFeatureCache {
-    override fun saveToDB(features: List<Feature>) {
-        val roomFeatures = features.map { feature ->
+    override fun saveToDB(features: FeaturesList) {
+        val roomFeatures = features.features.map { feature ->
             RoomFeature(
                 feature.type,
                 feature.id,
@@ -16,7 +17,15 @@ class RoomFeatureCacheImpl(private val db: DataBaseApp) : IRoomFeatureCache {
         db.featureDAO.insertAllFeatures(roomFeatures)
     }
 
-    override fun getFeaturesList(): List<Feature> = db.featureDAO.getAll().map { feature ->
-        Feature(feature.type, feature.id, feature.properties)
+    override fun getFeaturesList(): FeaturesList {
+        var featureList = db.featureDAO.getAll().map {
+            Feature(it.type, it.id, it.properties)
+        }
+        //не понимаю как тут все это вернуть в FeatureList вместо List<Features>
     }
+    }
+
+//    override fun getFeaturesList(): List<Feature> = db.featureDAO.getAll().map{ feature ->
+//        Feature(feature.type, feature.id, feature.properties)
+//    }
 }

@@ -47,7 +47,7 @@ class PlacesPresenter(val place: IPlacesRepo, val router: Router, val screen: IS
             .subscribe(
                 { repos ->
                     placesListPresenter.placesList.clear()
-                    placesListPresenter.placesList.addAll(repos)
+                    placesListPresenter.placesList.addAll(repos.features)
                     viewState.updateList()
                 },
                 { error -> viewState.showError(error) }

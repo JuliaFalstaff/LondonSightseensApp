@@ -13,9 +13,6 @@ data class Feature(
         @SerializedName("id")
         @Expose
         val id: String,
-//        @SerializedName("geometry")
-//        @Expose
-//        val geometry: Geometry,
         @SerializedName("properties")
         @Expose
         val properties: Properties,
