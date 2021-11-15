@@ -16,14 +16,14 @@ class PlaceInfoImpl(val api: RetrofitApi,
         const val API_KEY = BuildConfig.TRIP_MAP_API_KEY
     }
 
-    override fun loadPlaceInfo(featureId: Feature): Single<Place> =      networkStatus.isOnlineSingle().flatMap { isOnline ->
+    override fun loadPlaceInfo(featureId: Feature): Single<Place> = networkStatus.isOnlineSingle().flatMap { isOnline ->
         if (isOnline) {
-            featureId.properties.xid?.let { id ->
+            featureId.properties.xid.let { id ->
                 api.loadPlaceInfo(id, API_KEY)
                     .flatMap { place ->
                         Single.fromCallable {
                             db.saveToDB(place, featureId)
-                           place
+                            place
                         }
                     }
                     .onErrorReturn {

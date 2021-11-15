@@ -1,6 +1,7 @@
-package com.example.londonsightseensapp.model.room
+package com.example.londonsightseensapp.model.room.dao
 
 import androidx.room.*
+import com.example.londonsightseensapp.model.room.cache.RoomFeature
 
 @Dao
 interface FeatureDAO {
@@ -27,4 +28,8 @@ interface FeatureDAO {
 
     @Query("SELECT * FROM RoomFeature WHERE id = :featureId LIMIT 1")
     fun findById(featureId: String?) : RoomFeature?
+
+
+    @Query("SELECT * FROM RoomFeature WHERE xid = :featureXid LIMIT 1")
+    fun findBuXidProperty(featureXid: String) : RoomFeature?
 }

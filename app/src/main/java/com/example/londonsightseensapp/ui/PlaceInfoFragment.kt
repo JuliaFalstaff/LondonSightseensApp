@@ -60,7 +60,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         binding?.textViewPlaceDescription?.text = description
     }
 
-    override fun showName(name: String) {
+    override fun showName(name: String?) {
         binding?.textViewPlaceName?.text = name
     }
 

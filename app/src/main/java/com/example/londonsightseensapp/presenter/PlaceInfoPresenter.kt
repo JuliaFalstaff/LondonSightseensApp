@@ -21,19 +21,35 @@ class PlaceInfoPresenter(val place: Feature?, val placeInfo: IPlaceInfo, val rou
     }
 
     private fun loadInfo() {
-        disposable.add(place?.properties?.xid?.let {
-            placeInfo.loadPlaceInfo(it)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            { detailedInfo ->
-                                viewState.showName(detailedInfo.name)
-                                viewState.showDescription(detailedInfo.wikipediaExtracts.textDescription)
-                                viewState.showImage(detailedInfo.preview.source)
-                            },
-                            { error -> viewState.showError(error) }
-                    )
+        disposable.add(place?.let {
+            placeInfo.loadPlaceInfo(it).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    { detailedInfo ->
+                        viewState.showName(detailedInfo.name)
+                        viewState.showDescription(detailedInfo.wikipediaExtracts.textDescription)
+                        viewState.showImage(detailedInfo.preview.source)
+                    },
+                    { error -> viewState.showError(error) }
+                )
         })
     }
+
+
+//
+//    private fun loadInfo() {
+//        disposable.add(place?.properties?.xid?.let {
+//            placeInfo.loadPlaceInfo(place)
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(
+//                            { detailedInfo ->
+//                                viewState.showName(detailedInfo.name)
+//                                viewState.showDescription(detailedInfo.wikipediaExtracts.textDescription)
+//                                viewState.showImage(detailedInfo.preview.source)
+//                            },
+//                            { error -> viewState.showError(error) }
+//                    )
+//        })
+//    }
 
     fun backPressed(): Boolean {
         router.exit()

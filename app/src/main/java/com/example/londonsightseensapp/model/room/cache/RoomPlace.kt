@@ -1,23 +1,23 @@
-package com.example.londonsightseensapp.model.room
+package com.example.londonsightseensapp.model.room.cache
 
-import androidx.annotation.NonNull
 import androidx.room.*
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Address
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Point
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Preview
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.WikipediaExtracts
+import com.example.londonsightseensapp.model.room.cache.RoomFeature
 
 @Entity(
     foreignKeys = [ForeignKey(
         entity = RoomFeature::class,
         parentColumns = ["id"],
-        childColumns = ["placeUid"],
+        childColumns = ["featureId"],
         onDelete = ForeignKey.CASCADE
     )]
 )
-
 data class RoomPlace(
-    @PrimaryKey @NonNull
+@PrimaryKey(autoGenerate = true)
+    val id: Int,
     val xid: String?,
     val name: String?,
     @Embedded
@@ -32,5 +32,5 @@ data class RoomPlace(
     val wikipediaExtracts: WikipediaExtracts,
     @Embedded
     val point: Point,
-    val placeUid: String?
+    val featureId: String?
     )

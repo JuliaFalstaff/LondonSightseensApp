@@ -3,13 +3,14 @@ package com.example.londonsightseensapp.model.placeinfo
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.room.DataBaseApp
-import com.example.londonsightseensapp.model.room.RoomPlace
+import com.example.londonsightseensapp.model.room.cache.RoomPlace
 
 class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
     override fun saveToDB(place: Place, featureId: Feature?) {
         val roomFeature = featureId?.id.let { db.featureDAO.findById(it) }
 
         val roomPlace = RoomPlace(
+            0,
             place.xid,
             place.name,
             place.address,
@@ -28,8 +29,8 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
     override fun getPlace(feature: Feature?): Place {
         val roomFeature = feature?.id.let { db.featureDAO.findById(it) }
 
-        val roomPlace = db.placeDAO.findForPlace(roomFeature?.id)
-        return Place (
+        val roomPlace = db.placeDAO.findForPlaceByUid(roomFeature?.id)
+        return Place(
             roomPlace.xid,
             roomPlace.name,
             roomPlace.address,
@@ -39,11 +40,10 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
             roomPlace.image,
             roomPlace.preview,
             roomPlace.wikipediaExtracts,
-            roomPlace.point,
-)
+            roomPlace.point
+        )
     }
 }
-
 
 
 //
