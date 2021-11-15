@@ -1,6 +1,7 @@
 package com.example.londonsightseensapp
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 
@@ -19,5 +20,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        Stetho.initializeWithDefaults(this)
     }
 }

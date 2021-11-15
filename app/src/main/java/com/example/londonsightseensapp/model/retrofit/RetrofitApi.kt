@@ -18,7 +18,7 @@ interface RetrofitApi {
             @Query("lat_min") latMin: Double,
             @Query("lat_max") latMax: Double,
             @Query("apikey") apiKey: String
-    ) : Single<List<Feature>>
+    ) : Single<FeaturesList>
 
     @GET("ru/places/xid/{xid}")
     fun loadPlaceInfo(
