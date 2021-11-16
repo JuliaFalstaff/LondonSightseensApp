@@ -2,7 +2,7 @@
 <resources>
     <dimen name="padding_10dp">10dp</dimen>
     <dimen name="layout_marginBottom">10dp</dimen>
-    <dimen name="cardview_elevation">8dp</dimen>
-    <dimen name="cardview_corner_radius">8dp</dimen>
-    <dimen name="layout_height_cardview">50dp</dimen>
+    <dimen name="cardview_elevation">15dp</dimen>
+    <dimen name="cardview_corner_radius">15dp</dimen>
+    <dimen name="layout_height_cardview">150dp</dimen>
 </resources>

@@ -23,6 +23,7 @@ class PlaceInfoPresenter(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         loadInfo()
+        viewState.showRating(place?.properties?.rate.toString())
     }
 
     private fun loadInfo() {
@@ -33,6 +34,11 @@ class PlaceInfoPresenter(
                         viewState.showName(detailedInfo.name)
                         viewState.showDescription(detailedInfo.wikipediaExtracts.textDescription)
                         viewState.showImage(detailedInfo.preview.source)
+                        viewState.showRoad(detailedInfo.address.road)
+                        viewState.showState(detailedInfo.address.stateDistrict)
+                        viewState.showSuburb(detailedInfo.address.suburb)
+                        viewState.showCity(detailedInfo.address.city)
+                        viewState.openTripMap(detailedInfo.otm)
                     },
                     { error -> viewState.showError(error) }
                 )

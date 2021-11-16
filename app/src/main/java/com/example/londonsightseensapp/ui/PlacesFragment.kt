@@ -52,7 +52,6 @@ class PlacesFragment : MvpAppCompatFragment(), PlacesView, BackButtonListener {
 
     override fun init() {
         binding?.run {
-            this.recyclerViewPlace.layoutManager = LinearLayoutManager(context)
             adapter = PlacesRVAdapter(presenter.placesListPresenter)
             this.recyclerViewPlace.adapter = adapter
         }

@@ -3,10 +3,8 @@ package com.example.londonsightseensapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.londonsightseensapp.databinding.PlaceItemRecyclerBinding
-import com.example.londonsightseensapp.utils.IImageLoader
 import com.example.londonsightseensapp.view.IPlacesListPresenter
 import com.example.londonsightseensapp.view.PlacesItemView
 
@@ -40,7 +38,15 @@ class PlacesRVAdapter(
         override var positionItem: Int = -1
 
         override fun setName(name: String) {
-            binding.textViewName.text = name
+            binding.textViewNameOfPlace.text = name
+        }
+
+        override fun setKind(kind: String) {
+            binding.textViewKind.text = kind
+        }
+
+        override fun setRate(rate: Int) {
+            binding.textViewRate.text = rate.toString()
         }
     }
 }

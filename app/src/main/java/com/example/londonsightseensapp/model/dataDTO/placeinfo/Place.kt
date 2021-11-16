@@ -37,5 +37,5 @@ data class Place(
     val wikipediaExtracts: WikipediaExtracts,
     @SerializedName("point")
     @Expose
-    val point: Point
+    val point: Point,
 ) : Parcelable

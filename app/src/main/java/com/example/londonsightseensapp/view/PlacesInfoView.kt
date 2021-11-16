@@ -7,7 +7,12 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface PlacesInfoView : MvpView {
     fun showDescription(description: String)
     fun showName(name: String?)
-    fun showAddress (address: String)
-    fun showImage (imageUrl: String)
+    fun showCity(city: String)
+    fun showImage(imageUrl: String)
     fun showError(error: Throwable)
+    fun showState(state: String)
+    fun showRoad(road: String)
+    fun showSuburb(suburb: String)
+    fun showRating(rate: String)
+    fun openTripMap(url: String)
 }

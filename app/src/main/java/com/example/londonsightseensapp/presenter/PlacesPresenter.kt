@@ -22,6 +22,8 @@ class PlacesPresenter(val place: IPlacesRepo, val router: Router, val screen: IS
         override fun bindView(view: PlacesItemView) {
             val place = placesList[view.positionItem]
             view.setName(place.properties.name)
+            view.setKind(place.properties.kinds)
+            view.setRate(place.properties.rate)
         }
 
         override fun getCount(): Int = placesList.size

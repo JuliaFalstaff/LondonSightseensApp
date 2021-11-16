@@ -1,15 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/layout_height_cardview"
+    android:layout_marginStart="@dimen/padding_10dp"
+    android:layout_marginEnd="@dimen/padding_10dp"
+    android:layout_marginTop="@dimen/padding_10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:strokeWidth="1dp"
+    app:strokeColor="#257A80"
     android:layout_marginBottom="@dimen/layout_marginBottom"
     android:elevation="@dimen/cardview_elevation"
     app:cardCornerRadius="@dimen/cardview_corner_radius">
 
-    <TextView
-        android:id="@+id/textViewNameOfPlace"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
-        android:text="@string/title_of_place" />
-</androidx.cardview.widget.CardView>
+        android:layout_width="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewNameOfPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_of_place"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewKind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/kind_of_place"
+            android:textSize="14sp"
+            android:textAlignment="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameOfPlace" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewRatingIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_rating"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrierName"
+            app:layout_constraintTop_toTopOf="@+id/textViewRate" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNameOfPlace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrierIcon"
+            app:layout_constraintTop_toTopOf="@+id/textViewNameOfPlace"
+            tools:text="7" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierName"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="textViewNameOfPlace"/>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierIcon"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="imageViewRatingIcon"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
