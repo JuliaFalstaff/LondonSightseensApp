@@ -13,6 +13,6 @@ class AndroidScreens : IScreens {
     }
 
     override fun placesInfo(place: Feature): Screen {
-        return FragmentScreen { PlaceInfoFragment.newInstance(place)}
+        return FragmentScreen { PlaceInfoFragment.newInstance(place) }
     }
 }

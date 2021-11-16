@@ -9,10 +9,10 @@ import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.model.room.cache.RoomFeature
 import com.example.londonsightseensapp.model.room.cache.RoomFeatureList
 import com.example.londonsightseensapp.model.room.cache.RoomPlace
-import com.example.londonsightseensapp.model.room.converter.Converter
 import com.example.londonsightseensapp.model.room.dao.FeatureDAO
 import com.example.londonsightseensapp.model.room.dao.FeatureListDAO
 import com.example.londonsightseensapp.model.room.dao.PlaceDAO
+import com.example.londonsightseensapp.utils.Converter
 
 @Database(
     entities = [RoomFeatureList::class, RoomFeature::class, RoomPlace::class],

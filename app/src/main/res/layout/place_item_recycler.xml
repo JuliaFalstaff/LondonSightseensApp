@@ -2,17 +2,14 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginBottom="10dp"
-    android:elevation="8dp"
-    app:cardCornerRadius="8dp">
+    android:layout_height="@dimen/layout_height_cardview"
+    android:layout_marginBottom="@dimen/layout_marginBottom"
+    android:elevation="@dimen/cardview_elevation"
+    app:cardCornerRadius="@dimen/cardview_corner_radius">
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewNameOfPlace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Name" />
-
-
-
+        android:text="@string/title_of_place" />
 </androidx.cardview.widget.CardView>

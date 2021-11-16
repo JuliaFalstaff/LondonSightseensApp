@@ -10,8 +10,13 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
 
 
-class PlaceInfoPresenter(val place: Feature?, val placeInfo: IPlaceInfo, val router: Router, val screen: IScreens) :
-        MvpPresenter<PlacesInfoView>() {
+class PlaceInfoPresenter(
+    val place: Feature?,
+    val placeInfo: IPlaceInfo,
+    val router: Router,
+    val screen: IScreens
+) :
+    MvpPresenter<PlacesInfoView>() {
 
     private var disposable = CompositeDisposable()
 
@@ -33,23 +38,6 @@ class PlaceInfoPresenter(val place: Feature?, val placeInfo: IPlaceInfo, val rou
                 )
         })
     }
-
-
-//
-//    private fun loadInfo() {
-//        disposable.add(place?.properties?.xid?.let {
-//            placeInfo.loadPlaceInfo(place)
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(
-//                            { detailedInfo ->
-//                                viewState.showName(detailedInfo.name)
-//                                viewState.showDescription(detailedInfo.wikipediaExtracts.textDescription)
-//                                viewState.showImage(detailedInfo.preview.source)
-//                            },
-//                            { error -> viewState.showError(error) }
-//                    )
-//        })
-//    }
 
     fun backPressed(): Boolean {
         router.exit()

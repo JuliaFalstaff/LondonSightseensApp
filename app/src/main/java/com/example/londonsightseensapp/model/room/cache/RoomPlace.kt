@@ -1,11 +1,13 @@
 package com.example.londonsightseensapp.model.room.cache
 
-import androidx.room.*
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Address
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Point
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Preview
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.WikipediaExtracts
-import com.example.londonsightseensapp.model.room.cache.RoomFeature
 
 @Entity(
     foreignKeys = [ForeignKey(
@@ -16,7 +18,7 @@ import com.example.londonsightseensapp.model.room.cache.RoomFeature
     )]
 )
 data class RoomPlace(
-@PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val xid: String?,
     val name: String?,
@@ -33,4 +35,4 @@ data class RoomPlace(
     @Embedded
     val point: Point,
     val featureId: String?
-    )
+)

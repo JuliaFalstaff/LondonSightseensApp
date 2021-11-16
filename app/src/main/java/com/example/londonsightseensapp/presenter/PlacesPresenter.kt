@@ -11,7 +11,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
 
-class PlacesPresenter(val place: IPlacesRepo, val router: Router, val screen: IScreens) : MvpPresenter<PlacesView>() {
+class PlacesPresenter(val place: IPlacesRepo, val router: Router, val screen: IScreens) :
+    MvpPresenter<PlacesView>() {
 
     class PlacesListPresenter : IPlacesListPresenter {
         val placesList = mutableListOf<Feature>()
@@ -55,14 +56,13 @@ class PlacesPresenter(val place: IPlacesRepo, val router: Router, val screen: IS
     }
 
     private fun openPlaceInfo(place: PlacesItemView) {
-        router.navigateTo(screen.placesInfo( placesListPresenter.placesList[place.positionItem]))
+        router.navigateTo(screen.placesInfo(placesListPresenter.placesList[place.positionItem]))
     }
 
     fun backPressed(): Boolean {
         router.exit()
         return true
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

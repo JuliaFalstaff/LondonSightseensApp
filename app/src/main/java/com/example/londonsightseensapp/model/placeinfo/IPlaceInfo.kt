@@ -5,6 +5,5 @@ import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import io.reactivex.rxjava3.core.Single
 
 interface IPlaceInfo {
-//    fun loadPlaceInfo(placeId: String): Single<Place>
     fun loadPlaceInfo(featureId: Feature): Single<Place>
 }

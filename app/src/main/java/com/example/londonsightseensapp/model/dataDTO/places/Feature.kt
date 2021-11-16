@@ -16,5 +16,5 @@ data class Feature(
         @SerializedName("properties")
         @Expose
         val properties: Properties,
-):Parcelable
+) : Parcelable
 

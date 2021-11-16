@@ -17,11 +17,9 @@ data class Place(
     @SerializedName("address")
     @Expose
     val address: Address,
-
     @SerializedName("kinds")
     @Expose
     val kinds: String?,
-
     @SerializedName("otm")
     @Expose
     val otm: String,

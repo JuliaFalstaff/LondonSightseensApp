@@ -37,8 +37,11 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     val presenter by moxyPresenter {
         PlaceInfoPresenter(
             arguments?.getParcelable(PLACE),
-            PlaceInfoImpl(RetrofitImpl().api, AndroidNetworkStatus(requireContext()), RoomPlaceCacheImpl(
-                DataBaseApp.getDatabase(requireContext()))),
+            PlaceInfoImpl(
+                RetrofitImpl().api, AndroidNetworkStatus(requireContext()), RoomPlaceCacheImpl(
+                    DataBaseApp.getDatabase(requireContext())
+                )
+            ),
             App.instance.router,
             AndroidScreens()
         )
@@ -53,7 +56,6 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         return binding?.root
     }
 
-
     override fun backPressed(): Boolean = presenter.backPressed()
 
     override fun showDescription(description: String) {
@@ -65,7 +67,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun showAddress(address: String) {
-
+        //TODO
     }
 
     override fun showImage(imageUrl: String) {

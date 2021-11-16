@@ -1,4 +1,4 @@
-package com.example.londonsightseensapp.model.room.converter
+package com.example.londonsightseensapp.utils
 
 import androidx.room.TypeConverter
 import com.example.londonsightseensapp.model.dataDTO.places.Feature

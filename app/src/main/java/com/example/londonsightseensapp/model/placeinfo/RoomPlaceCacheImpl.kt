@@ -44,22 +44,3 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
         )
     }
 }
-
-
-//
-//override fun getRepositoriesList(user: GithubUser?): List<GithubRepository> {
-//    val roomUser = user?.login?.let {
-//        db.userDao.findByLogin(it)
-//    } ?: throw RuntimeException(R.string.error_find_user.toString())
-//
-//    return db.repositoryDao.findForUser(roomUser.id)
-//        .map {
-//            GithubRepository(
-//                it.id,
-//                it.name,
-//                it.forks_count,
-//                it.html_url,
-//                it.language,
-//                it.url
-//            )
-//        }

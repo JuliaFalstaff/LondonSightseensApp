@@ -1,9 +1,10 @@
 package com.example.londonsightseensapp.model.room.cache
 
-import androidx.room.*
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 import com.example.londonsightseensapp.model.dataDTO.places.Properties
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 
 @Entity(
     foreignKeys = [ForeignKey(
@@ -13,7 +14,7 @@ import com.google.gson.annotations.SerializedName
         onDelete = ForeignKey.CASCADE
     )]
 )
-data class RoomFeature (
+data class RoomFeature(
     val type: String,
     @PrimaryKey
     val id: String,

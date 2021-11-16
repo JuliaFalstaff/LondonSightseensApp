@@ -26,4 +26,4 @@ data class Address(
     @SerializedName("state_district")
     @Expose
     val stateDistrict: String
-):Parcelable
+) : Parcelable
