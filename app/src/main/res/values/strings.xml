@@ -6,4 +6,5 @@
     <string name="kind_of_place">Kind of Place</string>
     <string name="route_of_place">Route</string>
     <string name="rating_of_place">Rating</string>
+    <string name="example_header">Name of Place</string>
 </resources>

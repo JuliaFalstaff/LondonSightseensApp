@@ -63,11 +63,12 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     override fun backPressed(): Boolean = presenter.backPressed()
 
     override fun showDescription(description: String) {
-        binding?.textViewPlaceDescription?.text = description
+        binding?.includeBottomSheetLayout?.bottomSheetDescription?.text = description
     }
 
     override fun showName(name: String?) {
         binding?.textViewPlaceName?.text = name
+        binding?.includeBottomSheetLayout?.bottomSheetDescriptionHeader?.text = name
     }
 
     override fun showCity(city: String) {

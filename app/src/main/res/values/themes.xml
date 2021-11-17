@@ -17,4 +17,27 @@
     <style name="Theme.LondonSightseensApp.Splash">
         <item name="android:windowBackground">@drawable/splash_background_drawable</item>
     </style>
+
+    <style name="BottomSheetHeader" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="android:textColor">@color/textDarkPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_header</item>
+        <item name="android:layout_marginTop">@dimen/margin_4dp</item>
+        <item name="android:paddingStart">@dimen/padding_10dp</item>
+        <item name="android:paddingEnd">@dimen/padding_10dp</item>
+    </style>
+
+    <style name="BottomSheetLine" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="android:background">@color/textDarkDisabled</item>
+        <item name="android:layout_marginTop">@dimen/margin_4dp</item>
+        <item name="android:layout_width">@dimen/layout_width_bottom_sheet</item>
+        <item name="android:layout_height">@dimen/layout_height_bottom_sheet</item>
+    </style>
+
+    <style name="BottomSheetDescription" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="android:textSize">@dimen/text_size_explanation</item>
+        <item name="android:paddingStart">@dimen/padding_10dp</item>
+        <item name="android:paddingEnd">@dimen/padding_10dp</item>
+        <item name="android:textColor">@color/textDarkSecondary</item>
+    </style>
 </resources>
