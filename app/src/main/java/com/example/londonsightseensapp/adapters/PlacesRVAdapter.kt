@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.londonsightseensapp.databinding.PlaceItemRecyclerBinding
+import com.example.londonsightseensapp.utils.convertToReadable
 import com.example.londonsightseensapp.view.IPlacesListPresenter
 import com.example.londonsightseensapp.view.PlacesItemView
 
@@ -42,7 +43,8 @@ class PlacesRVAdapter(
         }
 
         override fun setKind(kind: String) {
-            binding.textViewKind.text = kind
+            kind.convertToReadable(kind).apply {
+                binding.textViewKind.text = "kinds: $this"}
         }
 
         override fun setRate(rate: Int) {
