@@ -24,6 +24,7 @@ class PlaceInfoPresenter(
         super.onFirstViewAttach()
         loadInfo()
         viewState.showRating(place?.properties?.rate.toString())
+        viewState.showName(place?.properties?.name)
     }
 
     private fun loadInfo() {
@@ -31,7 +32,6 @@ class PlaceInfoPresenter(
             placeInfo.loadPlaceInfo(it).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { detailedInfo ->
-                        viewState.showName(detailedInfo.name)
                         viewState.showDescription(detailedInfo.wikipediaExtracts.textDescription)
                         viewState.showImage(detailedInfo.preview.source)
                         viewState.showRoad(detailedInfo.address.road)

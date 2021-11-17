@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.londonsightseensapp.App
+import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.FragmentPlaceInfoBinding
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.placeinfo.PlaceInfoImpl
@@ -40,21 +41,21 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
 
     val presenter by moxyPresenter {
         PlaceInfoPresenter(
-            arguments?.getParcelable(PLACE),
-            PlaceInfoImpl(
-                RetrofitImpl().api, AndroidNetworkStatus(requireContext()), RoomPlaceCacheImpl(
-                    DataBaseApp.getDatabase(requireContext())
+                arguments?.getParcelable(PLACE),
+                PlaceInfoImpl(
+                        RetrofitImpl().api, AndroidNetworkStatus(requireContext()), RoomPlaceCacheImpl(
+                        DataBaseApp.getDatabase(requireContext())
                 )
-            ),
-            App.instance.router,
-            AndroidScreens()
+                ),
+                App.instance.router,
+                AndroidScreens()
         )
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentPlaceInfoBinding.inflate(inflater, container, false)
         return binding?.root
@@ -79,8 +80,10 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         requireContext().let {
             binding?.imageViewPlacePicture?.let { imageView ->
                 Glide.with(it)
-                    .load(imageUrl)
-                    .into(imageView)
+                        .load(imageUrl)
+                        .placeholder(R.drawable.progress_animation)
+                        .error(R.drawable.ic_load_error_vector)
+                        .into(imageView)
             }
         }
     }
