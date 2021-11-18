@@ -10,9 +10,16 @@ import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class PlacesPresenter(val place: IPlacesRepo, val router: Router, val screen: IScreens) :
+class PlacesPresenter() :
     MvpPresenter<PlacesView>() {
+
+    @Inject lateinit var place: IPlacesRepo
+
+    @Inject lateinit var router: Router
+
+    @Inject lateinit var screen: IScreens
 
     class PlacesListPresenter : IPlacesListPresenter {
         val placesList = mutableListOf<Feature>()

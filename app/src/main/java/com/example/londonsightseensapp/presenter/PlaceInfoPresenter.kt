@@ -9,15 +9,18 @@ import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
+import javax.inject.Inject
 
 
 class PlaceInfoPresenter(
-    val place: Feature?,
-    val placeInfo: IPlaceInfo,
-    val router: Router,
-    val screen: IScreens
+    val place: Feature?
 ) :
     MvpPresenter<PlacesInfoView>() {
+
+    @Inject
+    lateinit var placeInfo: IPlaceInfo
+    @Inject
+    lateinit var router: Router
 
     private var disposable = CompositeDisposable()
 
@@ -41,8 +44,10 @@ class PlaceInfoPresenter(
                         viewState.showCity(detailedInfo.address.city)
                         viewState.openTripMap(detailedInfo.otm)
                     },
-                    { error -> viewState.showError(error)
-                        Log.e("RX", error.printStackTrace().toString())}
+                    { error ->
+                        viewState.showError(error)
+                        Log.e("RX", error.printStackTrace().toString())
+                    }
                 )
         })
     }

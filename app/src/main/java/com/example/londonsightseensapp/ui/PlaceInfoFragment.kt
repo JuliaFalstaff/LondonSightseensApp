@@ -41,16 +41,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     private var binding: FragmentPlaceInfoBinding? = null
 
     val presenter by moxyPresenter {
-        PlaceInfoPresenter(
-                arguments?.getParcelable(PLACE),
-                PlaceInfoImpl(
-                        RetrofitImpl().api, AndroidNetworkStatus(requireContext()), RoomPlaceCacheImpl(
-                        DataBaseApp.getDatabase(requireContext())
-                )
-                ),
-                App.instance.router,
-                AndroidScreens()
-        )
+        PlaceInfoPresenter(arguments?.getParcelable(PLACE)).apply { App.instance.appComponent.inject(this) }
     }
 
     override fun onCreateView(

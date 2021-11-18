@@ -21,6 +21,7 @@ import com.example.londonsightseensapp.utils.GlideImageLoader
 import com.example.londonsightseensapp.view.PlacesView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
 class PlacesFragment : MvpAppCompatFragment(), PlacesView, BackButtonListener {
 
@@ -28,17 +29,14 @@ class PlacesFragment : MvpAppCompatFragment(), PlacesView, BackButtonListener {
         fun newInstance(): PlacesFragment = PlacesFragment()
     }
 
+    @Inject
+    lateinit var dataBase: DataBaseApp
+
     private var binding: FragmentPlacesBinding? = null
     private var adapter: PlacesRVAdapter? = null
 
     val presenter by moxyPresenter {
-        PlacesPresenter(
-            PlacesRepoImpl(
-                RetrofitImpl().api,
-                AndroidNetworkStatus(requireContext()),
-                RoomFeatureCacheImpl(DataBaseApp.getDatabase(requireContext()))
-            ), App.instance.router, AndroidScreens()
-        )
+        PlacesPresenter().apply { App.instance.appComponent.inject(this) }
     }
 
     override fun onCreateView(

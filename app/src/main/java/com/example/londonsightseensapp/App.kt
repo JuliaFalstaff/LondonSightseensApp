@@ -1,6 +1,9 @@
 package com.example.londonsightseensapp
 
 import android.app.Application
+import com.example.londonsightseensapp.di.AppComponent
+import com.example.londonsightseensapp.di.AppModule
+import com.example.londonsightseensapp.di.DaggerAppComponent
 import com.facebook.stetho.Stetho
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
@@ -11,15 +14,14 @@ class App : Application() {
         lateinit var instance: App
     }
 
-    private val cicerone: Cicerone<Router> by lazy {
-        Cicerone.create()
-    }
-    val navigatorHolder get() = cicerone.getNavigatorHolder()
-    val router get() = cicerone.router
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
         instance = this
+        appComponent = DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
         Stetho.initializeWithDefaults(this)
     }
 }
