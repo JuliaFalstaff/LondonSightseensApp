@@ -1,6 +1,8 @@
 package com.example.londonsightseensapp.ui
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.londonsightseensapp.App
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.ActivityMainBinding
@@ -9,6 +11,7 @@ import com.example.londonsightseensapp.utils.BackButtonListener
 import com.example.londonsightseensapp.view.IMainView
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
+import com.github.terrakok.cicerone.androidx.FragmentScreen
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
@@ -17,7 +20,22 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
 
     @Inject
     lateinit var navigationHolder: NavigatorHolder
-    val navigator = AppNavigator(this, R.id.container)
+//    val navigator = AppNavigator(this, R.id.container)
+
+    val navigator = object : AppNavigator(this, R.id.container) {
+        override fun setupFragmentTransaction(
+                screen: FragmentScreen,
+                fragmentTransaction: FragmentTransaction,
+                currentFragment: Fragment?,
+                nextFragment: Fragment
+        ) {
+            fragmentTransaction.setCustomAnimations(
+                    R.anim.slide_in,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.slide_out)
+        }
+    }
 
     private var binding: ActivityMainBinding? = null
     private val presenter by moxyPresenter {
