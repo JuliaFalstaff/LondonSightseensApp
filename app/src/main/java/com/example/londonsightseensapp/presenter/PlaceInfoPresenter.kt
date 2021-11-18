@@ -1,5 +1,6 @@
 package com.example.londonsightseensapp.presenter
 
+import android.util.Log
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.placeinfo.IPlaceInfo
 import com.example.londonsightseensapp.navigation.IScreens
@@ -40,7 +41,8 @@ class PlaceInfoPresenter(
                         viewState.showCity(detailedInfo.address.city)
                         viewState.openTripMap(detailedInfo.otm)
                     },
-                    { error -> viewState.showError(error) }
+                    { error -> viewState.showError(error)
+                        Log.e("RX", error.printStackTrace().toString())}
                 )
         })
     }
@@ -49,7 +51,6 @@ class PlaceInfoPresenter(
         router.exit()
         return true
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
