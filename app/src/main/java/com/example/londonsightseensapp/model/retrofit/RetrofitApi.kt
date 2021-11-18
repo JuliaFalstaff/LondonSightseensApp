@@ -21,8 +21,8 @@ interface RetrofitApi {
 
     @GET("ru/places/xid/{xid}")
     fun loadPlaceInfo(
-        @Path("xid") xid: String,
-        @Query("apikey") apiKey: String
+            @Path("xid") xid: String?,
+            @Query("apikey") apiKey: String
     ): Single<Place>
 }
 

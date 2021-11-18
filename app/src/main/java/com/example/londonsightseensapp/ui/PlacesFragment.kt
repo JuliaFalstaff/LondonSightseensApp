@@ -53,7 +53,7 @@ class PlacesFragment : MvpAppCompatFragment(), PlacesView, BackButtonListener {
     }
 
     override fun showError(error: Throwable) {
-        Toast.makeText(context, error.stackTraceToString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, error.printStackTrace().toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,11 +62,11 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         binding?.includeBottomSheetLayout?.bottomSheetDescriptionHeader?.text = name
     }
 
-    override fun showCity(city: String) {
+    override fun showCity(city: String?) {
         binding?.textViewCity?.text = city
     }
 
-    override fun showImage(imageUrl: String) {
+    override fun showImage(imageUrl: String?) {
         requireContext().let {
             binding?.imageViewPlacePicture?.let { imageView ->
                 Glide.with(it)
@@ -78,29 +79,30 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun showError(error: Throwable) {
-        Toast.makeText(context, error.stackTraceToString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+        Log.e("RX-fragment", error.localizedMessage)
     }
 
     @SuppressLint("SetTextI18n")
-    override fun showState(state: String) {
+    override fun showState(state: String?) {
         binding?.textViewState?.text = "State: $state"
     }
 
     @SuppressLint("SetTextI18n")
-    override fun showRoad(road: String) {
+    override fun showRoad(road: String?) {
         binding?.textViewRoad?.text = "Road: $road"
     }
 
     @SuppressLint("SetTextI18n")
-    override fun showSuburb(suburb: String) {
+    override fun showSuburb(suburb: String?) {
         binding?.textViewSuburb?.text = "Suburb: $suburb"
     }
 
-    override fun showRating(rate: String) {
+    override fun showRating(rate: String?) {
         binding?.textViewRate?.text = rate
     }
 
-    override fun openTripMap(url: String) {
+    override fun openTripMap(url: String?) {
         binding?.iconToOpenTripMapSite?.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse(url)
