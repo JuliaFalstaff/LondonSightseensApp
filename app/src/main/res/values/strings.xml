@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LondonSightseensApp</string>
     <string name="error_get_db">Database hasn\'t been created</string>
-    <string name="header_fragment_places">London Eye. Find an interesting places to visit clode to the center</string>
+    <string name="header_fragment_places">Find an interesting place to visit:</string>
     <string name="title_of_place">Name of Place</string>
     <string name="kind_of_place">Kind of Place</string>
     <string name="route_of_place">Route</string>

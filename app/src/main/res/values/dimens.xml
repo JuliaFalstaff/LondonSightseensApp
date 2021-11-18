@@ -4,7 +4,7 @@
     <dimen name="layout_marginBottom">10dp</dimen>
     <dimen name="cardview_elevation">15dp</dimen>
     <dimen name="cardview_corner_radius">15dp</dimen>
-    <dimen name="layout_height_cardview">150dp</dimen>
+    <dimen name="layout_height_cardview">180dp</dimen>
     <dimen name="peek_height_bottom_sheet_behavior">300dp</dimen>
     <dimen name="text_size_header">25sp</dimen>
     <dimen name="margin_4dp">4dp</dimen>

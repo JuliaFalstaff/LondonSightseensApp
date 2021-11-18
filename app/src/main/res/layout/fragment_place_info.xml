@@ -101,7 +101,6 @@
             app:layout_constraintStart_toEndOf="@+id/textViewRate"
             app:layout_constraintTop_toTopOf="@+id/textViewState" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <include
         android:id="@+id/includeBottomSheetLayout"
         layout="@layout/bottom_sheet_layout" />

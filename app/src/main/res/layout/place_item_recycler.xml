@@ -42,17 +42,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewNameOfPlace" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewRatingIcon" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageViewRatingIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_rating"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewRate"
+            app:layout_constraintBottom_toTopOf="@+id/textViewKind"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/barrierName"
-            app:layout_constraintTop_toTopOf="@+id/textViewRate" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barrierName" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewRate"
@@ -60,27 +60,17 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_rating"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewNameOfPlace"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/barrierIcon"
-            app:layout_constraintTop_toTopOf="@+id/textViewNameOfPlace"
-            tools:text="7" />
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewRatingIcon"
+            app:layout_constraintStart_toEndOf="@+id/imageViewRatingIcon"
+            app:layout_constraintTop_toTopOf="@+id/imageViewRatingIcon"
+            tools:text="5" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrierName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:barrierDirection="end"
+            app:barrierDirection="bottom"
             app:constraint_referenced_ids="textViewNameOfPlace" />
-
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrierIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:barrierDirection="end"
-            app:constraint_referenced_ids="imageViewRatingIcon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
