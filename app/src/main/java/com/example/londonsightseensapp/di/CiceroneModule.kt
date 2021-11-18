@@ -28,5 +28,4 @@ class CiceroneModule {
     @Provides
     @Singleton
     fun screens() : IScreens = AndroidScreens()
-
 }

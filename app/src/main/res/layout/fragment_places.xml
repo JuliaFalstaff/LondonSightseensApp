@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/layout_height_picture_header"
         android:adjustViewBounds="true"
-        android:src="@drawable/london"
         android:scaleType="centerCrop"
+        android:src="@drawable/london"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

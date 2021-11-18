@@ -5,8 +5,6 @@ import com.example.londonsightseensapp.di.AppComponent
 import com.example.londonsightseensapp.di.AppModule
 import com.example.londonsightseensapp.di.DaggerAppComponent
 import com.facebook.stetho.Stetho
-import com.github.terrakok.cicerone.Cicerone
-import com.github.terrakok.cicerone.Router
 
 class App : Application() {
 

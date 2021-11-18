@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.example.londonsightseensapp.App
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.ActivityMainBinding
-import com.example.londonsightseensapp.navigation.AndroidScreens
 import com.example.londonsightseensapp.presenter.MainPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener
 import com.example.londonsightseensapp.view.IMainView
@@ -21,7 +20,13 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
     val navigator = AppNavigator(this, R.id.container)
 
     private var binding: ActivityMainBinding? = null
-    private val presenter by moxyPresenter { MainPresenter().apply { App.instance.appComponent.inject(this) } }
+    private val presenter by moxyPresenter {
+        MainPresenter().apply {
+            App.instance.appComponent.inject(
+                this
+            )
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_LondonSightseensApp)

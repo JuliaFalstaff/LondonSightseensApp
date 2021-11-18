@@ -1,6 +1,5 @@
 package com.example.londonsightseensapp.model.placeinfo
 
-import android.util.Log
 import com.example.londonsightseensapp.BuildConfig
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature

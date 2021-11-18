@@ -15,11 +15,14 @@ import javax.inject.Inject
 class PlacesPresenter() :
     MvpPresenter<PlacesView>() {
 
-    @Inject lateinit var place: IPlacesRepo
+    @Inject
+    lateinit var place: IPlacesRepo
 
-    @Inject lateinit var router: Router
+    @Inject
+    lateinit var router: Router
 
-    @Inject lateinit var screen: IScreens
+    @Inject
+    lateinit var screen: IScreens
 
     class PlacesListPresenter : IPlacesListPresenter {
         val placesList = mutableListOf<Feature>()

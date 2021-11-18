@@ -1,6 +1,7 @@
 package com.example.londonsightseensapp.adapters
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -42,9 +43,10 @@ class PlacesRVAdapter(
             binding.textViewNameOfPlace.text = name
         }
 
+        @SuppressLint("SetTextI18n")
         override fun setKind(kind: String) {
             kind.convertToReadable(kind).apply {
-                binding.textViewKind.text = "kinds: $this"}
+                binding.textViewKind.text = "Kinds: $this"}
         }
 
         override fun setRate(rate: Int) {

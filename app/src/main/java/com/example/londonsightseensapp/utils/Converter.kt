@@ -5,7 +5,6 @@ import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-
 class Converter {
     private val gson = Gson()
     @TypeConverter

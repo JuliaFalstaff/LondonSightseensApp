@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +13,6 @@ import com.example.londonsightseensapp.App
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.FragmentPlaceInfoBinding
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
-import com.example.londonsightseensapp.model.placeinfo.PlaceInfoImpl
-import com.example.londonsightseensapp.model.placeinfo.RoomPlaceCacheImpl
-import com.example.londonsightseensapp.model.retrofit.RetrofitImpl
-import com.example.londonsightseensapp.model.room.DataBaseApp
-import com.example.londonsightseensapp.navigation.AndroidScreens
-import com.example.londonsightseensapp.network.AndroidNetworkStatus
 import com.example.londonsightseensapp.presenter.PlaceInfoPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener
 import com.example.londonsightseensapp.view.PlacesInfoView
@@ -41,13 +34,17 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     private var binding: FragmentPlaceInfoBinding? = null
 
     val presenter by moxyPresenter {
-        PlaceInfoPresenter(arguments?.getParcelable(PLACE)).apply { App.instance.appComponent.inject(this) }
+        PlaceInfoPresenter(arguments?.getParcelable(PLACE)).apply {
+            App.instance.appComponent.inject(
+                this
+            )
+        }
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentPlaceInfoBinding.inflate(inflater, container, false)
         return binding?.root
@@ -72,10 +69,10 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         requireContext().let {
             binding?.imageViewPlacePicture?.let { imageView ->
                 Glide.with(it)
-                        .load(imageUrl)
-                        .placeholder(R.drawable.progress_animation)
-                        .error(R.drawable.ic_load_error_vector)
-                        .into(imageView)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.progress_animation)
+                    .error(R.drawable.ic_load_error_vector)
+                    .into(imageView)
             }
         }
     }
