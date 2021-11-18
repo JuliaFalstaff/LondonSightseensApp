@@ -20,4 +20,5 @@
     <dimen name="text_size_name_cardview">18sp</dimen>
     <dimen name="text_size_kinds">15sp</dimen>
     <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="text_size_main_header">22sp</dimen>
 </resources>

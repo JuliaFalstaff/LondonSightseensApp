@@ -59,6 +59,7 @@
             android:id="@+id/textViewState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/textDarkSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPlaceName"
@@ -68,6 +69,7 @@
             android:id="@+id/textViewCity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/textDarkSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewState"
@@ -86,6 +88,7 @@
             android:id="@+id/textViewSuburb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/textDarkSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewRoad"
@@ -101,6 +104,7 @@
             app:layout_constraintStart_toEndOf="@+id/textViewRate"
             app:layout_constraintTop_toTopOf="@+id/textViewState" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <include
         android:id="@+id/includeBottomSheetLayout"
         layout="@layout/bottom_sheet_layout" />
