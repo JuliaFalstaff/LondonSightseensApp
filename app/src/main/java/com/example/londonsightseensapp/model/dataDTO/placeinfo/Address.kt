@@ -9,21 +9,21 @@ import kotlinx.android.parcel.Parcelize
 data class Address(
     @SerializedName("city")
     @Expose
-    val city: String,
+    val city: String? = "",
     @SerializedName("road")
     @Expose
-    val road: String,
+    val road: String? = "",
     @SerializedName("state")
     @Expose
-    val state: String,
+    val state: String? = "",
     @SerializedName("suburb")
     @Expose
-    val suburb: String,
+    val suburb: String? = "",
     @SerializedName("country")
     @Expose
-    val country: String,
+    val country: String? = "",
 
     @SerializedName("state_district")
     @Expose
-    val stateDistrict: String
+    val stateDistrict: String? = ""
 ) : Parcelable

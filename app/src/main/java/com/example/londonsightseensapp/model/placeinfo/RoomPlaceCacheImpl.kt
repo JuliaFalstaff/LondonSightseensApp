@@ -27,20 +27,18 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
     }
 
     override fun getPlace(feature: Feature?): Place {
-        val roomFeature = feature?.id.let { db.featureDAO.findById(it) }
-
-        val roomPlace = db.placeDAO.findForPlaceByUid(roomFeature?.id)
+        val roomFeature = feature?.properties?.xid.let { db.placeDAO.findForPlaceByFeatureXiD(it) }
         return Place(
-            roomPlace.xid,
-            roomPlace.name,
-            roomPlace.address,
-            roomPlace.kinds,
-            roomPlace.otm,
-            roomPlace.wikipediaUrl,
-            roomPlace.image,
-            roomPlace.preview,
-            roomPlace.wikipediaExtracts,
-            roomPlace.point
+            roomFeature.xid,
+            roomFeature.name,
+            roomFeature.address,
+            roomFeature.kinds,
+            roomFeature.otm,
+            roomFeature.wikipediaUrl,
+            roomFeature.image,
+            roomFeature.preview,
+            roomFeature.wikipediaExtracts,
+            roomFeature.point
         )
     }
 }
