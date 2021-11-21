@@ -9,14 +9,14 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [
-        AppModule::class,
-        ApiModule::class,
-        CacheModule::class,
-        CiceroneModule::class,
-        PlacesModule::class,
-        PlacesInfoModule::class
-    ]
+        modules = [
+            AppModule::class,
+            ApiModule::class,
+            CacheModule::class,
+            CiceroneModule::class,
+            PlacesModule::class,
+            PlacesInfoModule::class
+        ]
 )
 interface AppComponent {
     fun inject(mainActivity: MainActivity)

@@ -7,13 +7,13 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class WikipediaExtracts(
-    @SerializedName("title")
-    @Expose
-    val title: String,
-    @SerializedName("text")
-    @Expose
-    val textDescription: String,
-    @SerializedName("html")
-    @Expose
-    val html: String
+        @SerializedName("title")
+        @Expose
+        val title: String,
+        @SerializedName("text")
+        @Expose
+        val textDescription: String,
+        @SerializedName("html")
+        @Expose
+        val html: String,
 ) : Parcelable

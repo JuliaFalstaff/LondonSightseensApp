@@ -8,8 +8,8 @@ import com.example.londonsightseensapp.utils.Converter
 
 @Entity(tableName = "feature_list")
 data class RoomFeatureList(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    @TypeConverters(Converter::class)
-    val features: List<Feature>
+        @PrimaryKey(autoGenerate = true)
+        val id: Int,
+        @TypeConverters(Converter::class)
+        val features: List<Feature>,
 )

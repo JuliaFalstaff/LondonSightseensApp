@@ -7,10 +7,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Point(
-    @SerializedName("lon")
-    @Expose
-    val lon: Double,
-    @SerializedName("lat")
-    @Expose
-    val lat: Double
+        @SerializedName("lon")
+        @Expose
+        val lon: Double,
+        @SerializedName("lat")
+        @Expose
+        val lat: Double,
 ) : Parcelable

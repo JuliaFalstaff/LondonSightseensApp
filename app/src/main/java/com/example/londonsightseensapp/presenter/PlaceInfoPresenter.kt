@@ -47,7 +47,7 @@ class PlaceInfoPresenter(
                             },
                             { error ->
                                 viewState.showError(error)
-                                Log.e("RX", error.printStackTrace().toString())
+                                Log.e("TAG", error.printStackTrace().toString())
                             }
                     )
         })

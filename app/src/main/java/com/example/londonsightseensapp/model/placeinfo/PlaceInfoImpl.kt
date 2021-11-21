@@ -9,34 +9,34 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class PlaceInfoImpl(
-    val api: RetrofitApi,
-    val networkStatus: INetworkState,
-    val db: IRoomPlaceCache
+        val api: RetrofitApi,
+        val networkStatus: INetworkState,
+        val db: IRoomPlaceCache,
 ) : IPlaceInfo {
     companion object {
         const val API_KEY = BuildConfig.TRIP_MAP_API_KEY
     }
 
     override fun loadPlaceInfo(featureId: Feature?): Single<Place> =
-        networkStatus.isOnlineSingle().flatMap { isOnline ->
-            if (isOnline) {
-                featureId?.properties?.xid.let { id ->
-                    api.loadPlaceInfo(id, API_KEY)
-                        .flatMap { place ->
-                            Single.fromCallable {
-                                db.saveToDB(place, featureId)
-                                place
-                            }
-                        }
-                        .onErrorReturn {
-                            db.getPlace(featureId)
-                        }
+            networkStatus.isOnlineSingle().flatMap { isOnline ->
+                if (isOnline) {
+                    featureId?.properties?.xid.let { id ->
+                        api.loadPlaceInfo(id, API_KEY)
+                                .flatMap { place ->
+                                    Single.fromCallable {
+                                        db.saveToDB(place, featureId)
+                                        place
+                                    }
+                                }
+                                .onErrorReturn {
+                                    db.getPlace(featureId)
+                                }
+                    }
+                            .subscribeOn(Schedulers.io())
+                } else {
+                    Single.fromCallable {
+                        db.getPlace(featureId)
+                    }
                 }
-                    .subscribeOn(Schedulers.io())
-            } else {
-                Single.fromCallable {
-                    db.getPlace(featureId)
-                }
-            }
-        }.subscribeOn(Schedulers.io())
+            }.subscribeOn(Schedulers.io())
 }

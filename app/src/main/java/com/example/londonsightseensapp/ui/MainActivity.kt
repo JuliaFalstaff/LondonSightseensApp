@@ -20,14 +20,13 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
 
     @Inject
     lateinit var navigationHolder: NavigatorHolder
-//    val navigator = AppNavigator(this, R.id.container)
 
     val navigator = object : AppNavigator(this, R.id.container) {
         override fun setupFragmentTransaction(
                 screen: FragmentScreen,
                 fragmentTransaction: FragmentTransaction,
                 currentFragment: Fragment?,
-                nextFragment: Fragment
+                nextFragment: Fragment,
         ) {
             fragmentTransaction.setCustomAnimations(
                     R.anim.slide_in,
@@ -41,7 +40,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
     private val presenter by moxyPresenter {
         MainPresenter().apply {
             App.instance.appComponent.inject(
-                this
+                    this
             )
         }
     }

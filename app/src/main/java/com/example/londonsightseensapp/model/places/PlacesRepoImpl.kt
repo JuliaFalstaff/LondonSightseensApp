@@ -9,9 +9,9 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class PlacesRepoImpl(
-    val api: RetrofitApi,
-    val networkStatus: INetworkState,
-    val db: IRoomFeatureCache
+        val api: RetrofitApi,
+        val networkStatus: INetworkState,
+        val db: IRoomFeatureCache,
 ) : IPlacesRepo {
 
     companion object {
@@ -23,29 +23,29 @@ class PlacesRepoImpl(
     }
 
     override fun loadPlacesByGeoParams(): Single<FeaturesList> =
-        networkStatus.isOnlineSingle()
-            .flatMap { isOnline ->
-                if (isOnline) {
-                    api.loadSights(
-                        LON_MIN_LONDON,
-                        LON_MAX_LONDON,
-                        LAT_MIN_LONDON,
-                        LAT_MAX_LONDON,
-                        API_KEY
-                    )
-                        .flatMap { places ->
+            networkStatus.isOnlineSingle()
+                    .flatMap { isOnline ->
+                        if (isOnline) {
+                            api.loadSights(
+                                    LON_MIN_LONDON,
+                                    LON_MAX_LONDON,
+                                    LAT_MIN_LONDON,
+                                    LAT_MAX_LONDON,
+                                    API_KEY
+                            )
+                                    .flatMap { places ->
+                                        Single.fromCallable {
+                                            db.saveToDB(places)
+                                            places
+                                        }
+                                    }
+                                    .onErrorReturn {
+                                        db.getFeaturesList()
+                                    }
+                        } else {
                             Single.fromCallable {
-                                db.saveToDB(places)
-                                places
+                                db.getFeaturesList()
                             }
-                        }
-                        .onErrorReturn {
-                            db.getFeaturesList()
-                        }
-                } else {
-                    Single.fromCallable {
-                        db.getFeaturesList()
+                        }.subscribeOn(Schedulers.io())
                     }
-                }.subscribeOn(Schedulers.io())
-            }
 }

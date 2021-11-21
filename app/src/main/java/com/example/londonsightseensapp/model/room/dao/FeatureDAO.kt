@@ -30,7 +30,6 @@ interface FeatureDAO {
     @Query("SELECT * FROM RoomFeature WHERE id = :featureId LIMIT 1")
     fun findById(featureId: String?): RoomFeature?
 
-
     @Query("SELECT * FROM RoomFeature WHERE xid = :featureXid LIMIT 1")
     fun findBuXidProperty(featureXid: String): RoomFeature?
 }

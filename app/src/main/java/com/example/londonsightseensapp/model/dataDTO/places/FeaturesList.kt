@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 data class FeaturesList(
         @SerializedName("features")
         @Expose
-        val features: List<Feature>
+        val features: List<Feature>,
 ) : Parcelable
 
 

@@ -15,8 +15,8 @@ class PlacesInfoModule {
     @Singleton
     @Provides
     fun loadPlaceInfo(
-        api: RetrofitApi,
-        networkStatus: INetworkState,
-        db: IRoomPlaceCache
+            api: RetrofitApi,
+            networkStatus: INetworkState,
+            db: IRoomPlaceCache,
     ): IPlaceInfo = PlaceInfoImpl(api, networkStatus, db)
 }

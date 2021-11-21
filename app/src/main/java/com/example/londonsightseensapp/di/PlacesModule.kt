@@ -14,8 +14,8 @@ class PlacesModule {
     @Singleton
     @Provides
     fun loadPlacesByGeoParams(
-        api: RetrofitApi,
-        networkStatus: INetworkState,
-        db: IRoomFeatureCache
+            api: RetrofitApi,
+            networkStatus: INetworkState,
+            db: IRoomFeatureCache,
     ): IPlacesRepo = PlacesRepoImpl(api, networkStatus, db)
 }

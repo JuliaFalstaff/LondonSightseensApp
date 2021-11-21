@@ -10,29 +10,29 @@ import com.example.londonsightseensapp.model.dataDTO.placeinfo.Preview
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.WikipediaExtracts
 
 @Entity(
-    foreignKeys = [ForeignKey(
-        entity = RoomFeature::class,
-        parentColumns = ["id"],
-        childColumns = ["featureId"],
-        onDelete = ForeignKey.CASCADE
-    )]
+        foreignKeys = [ForeignKey(
+                entity = RoomFeature::class,
+                parentColumns = ["id"],
+                childColumns = ["featureId"],
+                onDelete = ForeignKey.CASCADE
+        )]
 )
 data class RoomPlace(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val xid: String?,
-    val name: String?,
-    @Embedded
-    val address: Address,
-    val kinds: String?,
-    val otm: String,
-    val wikipediaUrl: String,
-    val image: String,
-    @Embedded
-    val preview: Preview,
-    @Embedded
-    val wikipediaExtracts: WikipediaExtracts,
-    @Embedded
-    val point: Point,
-    val featureId: String?
+        @PrimaryKey(autoGenerate = true)
+        val id: Int,
+        val xid: String?,
+        val name: String?,
+        @Embedded
+        val address: Address,
+        val kinds: String?,
+        val otm: String,
+        val wikipediaUrl: String,
+        val image: String,
+        @Embedded
+        val preview: Preview,
+        @Embedded
+        val wikipediaExtracts: WikipediaExtracts,
+        @Embedded
+        val point: Point,
+        val featureId: String?,
 )

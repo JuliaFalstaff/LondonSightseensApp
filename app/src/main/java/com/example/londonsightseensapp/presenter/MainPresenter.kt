@@ -10,6 +10,7 @@ class MainPresenter() : MvpPresenter<IMainView>() {
 
     @Inject
     lateinit var router: Router
+
     @Inject
     lateinit var screens: IScreens
 

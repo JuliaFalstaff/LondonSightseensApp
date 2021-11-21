@@ -23,6 +23,7 @@ import moxy.ktx.moxyPresenter
 class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonListener {
 
     companion object {
+        const val TAG = "TAG"
         const val PLACE = "Place"
         fun newInstance(placeId: Feature): PlaceInfoFragment {
             val args = Bundle().apply { putParcelable(PLACE, placeId) }
@@ -37,15 +38,15 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     val presenter by moxyPresenter {
         PlaceInfoPresenter(arguments?.getParcelable(PLACE)).apply {
             App.instance.appComponent.inject(
-                this
+                    this
             )
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentPlaceInfoBinding.inflate(inflater, container, false)
         return binding?.root
@@ -70,17 +71,18 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         requireContext().let {
             binding?.imageViewPlacePicture?.let { imageView ->
                 Glide.with(it)
-                    .load(imageUrl)
-                    .placeholder(R.drawable.progress_animation)
-                    .error(R.drawable.ic_load_error_vector)
-                    .into(imageView)
+                        .load(imageUrl)
+                        .placeholder(R.drawable.progress_animation)
+                        .error(R.drawable.ic_load_error_vector)
+                        .into(imageView)
             }
         }
     }
 
     override fun showError(error: Throwable) {
-        Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
-        Log.e("RX-fragment", error.localizedMessage)
+        Toast.makeText(context, getString(R.string.place_info_error), Toast.LENGTH_SHORT).show()
+        binding?.iconToOpenTripMapSite?.visibility = View.GONE
+        Log.e(TAG, error.printStackTrace().toString())
     }
 
     @SuppressLint("SetTextI18n")

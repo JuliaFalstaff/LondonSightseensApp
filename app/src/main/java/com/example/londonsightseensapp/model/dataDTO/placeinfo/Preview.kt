@@ -7,13 +7,13 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Preview(
-    @SerializedName("source")
-    @Expose
-    val source: String,
-    @SerializedName("height")
-    @Expose
-    val height: Int,
-    @SerializedName("width")
-    @Expose
-    val width: Int
+        @SerializedName("source")
+        @Expose
+        val source: String,
+        @SerializedName("height")
+        @Expose
+        val height: Int,
+        @SerializedName("width")
+        @Expose
+        val width: Int,
 ) : Parcelable

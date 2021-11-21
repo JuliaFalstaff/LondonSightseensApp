@@ -17,20 +17,20 @@ class CacheModule {
     @Singleton
     @Provides
     fun database(app: App): DataBaseApp = Room.databaseBuilder(
-        app,
-        DataBaseApp::class.java,
-        "database.db"
+            app,
+            DataBaseApp::class.java,
+            "database.db"
     )
-        .fallbackToDestructiveMigration()
-        .build()
+            .fallbackToDestructiveMigration()
+            .build()
 
     @Singleton
     @Provides
     fun placesCache(database: DataBaseApp): IRoomFeatureCache =
-        RoomFeatureCacheImpl(database)
+            RoomFeatureCacheImpl(database)
 
     @Singleton
     @Provides
     fun placeInfoCache(database: DataBaseApp): IRoomPlaceCache =
-        RoomPlaceCacheImpl(database)
+            RoomPlaceCacheImpl(database)
 }

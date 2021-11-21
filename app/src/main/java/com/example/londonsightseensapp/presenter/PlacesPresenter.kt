@@ -13,7 +13,7 @@ import moxy.MvpPresenter
 import javax.inject.Inject
 
 class PlacesPresenter() :
-    MvpPresenter<PlacesView>() {
+        MvpPresenter<PlacesView>() {
 
     @Inject
     lateinit var place: IPlacesRepo
@@ -56,15 +56,15 @@ class PlacesPresenter() :
     private fun loadData() {
 
         disposable.addAll(place.loadPlacesByGeoParams()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { repos ->
-                    placesListPresenter.placesList.clear()
-                    placesListPresenter.placesList.addAll(repos.features)
-                    viewState.updateList()
-                },
-                { error -> viewState.showError(error) }
-            ))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { repos ->
+                            placesListPresenter.placesList.clear()
+                            placesListPresenter.placesList.addAll(repos.features)
+                            viewState.updateList()
+                        },
+                        { error -> viewState.showError(error) }
+                ))
     }
 
     private fun openPlaceInfo(place: PlacesItemView) {
