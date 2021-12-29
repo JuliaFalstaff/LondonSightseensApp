@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.londonsightseensapp.utils.CustomImageView
+            android:id="@+id/imageViewPlacePicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_load_error_vector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPlaceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginBottom="@dimen/margin_10dp"
+            android:text="@string/title_of_place"
+            android:textSize="@dimen/text_size_name"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewPlacePicture" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewRatingPlaceIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_5dp"
+            android:src="@drawable/ic_rating"
+            app:layout_constraintBottom_toTopOf="@+id/textViewState"
+            app:layout_constraintStart_toEndOf="@+id/textViewPlaceName"
+            app:layout_constraintTop_toTopOf="@+id/textViewPlaceName" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_rating"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewState"
+            app:layout_constraintStart_toEndOf="@+id/imageViewRatingPlaceIcon"
+            app:layout_constraintTop_toTopOf="@+id/textViewPlaceName"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/textViewState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textDarkSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPlaceName"
+            tools:text="State" />
+
+        <TextView
+            android:id="@+id/textViewCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textDarkSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewState"
+            tools:text="City" />
+
+        <TextView
+            android:id="@+id/textViewRoad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCity"
+            tools:text="Road" />
+
+        <TextView
+            android:id="@+id/textViewSuburb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textDarkSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRoad"
+            tools:text="Suburb" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iconToOpenTripMapSite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/geo_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewRoad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewRate"
+            app:layout_constraintTop_toTopOf="@+id/textViewState" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/includeBottomSheetLayout"
+        layout="@layout/bottom_sheet_layout" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

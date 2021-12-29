@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/layout_height_cardview"
+    android:layout_marginStart="@dimen/padding_10dp"
+    android:layout_marginTop="@dimen/padding_10dp"
+    android:layout_marginEnd="@dimen/padding_10dp"
+    android:layout_marginBottom="@dimen/layout_marginBottom"
+    android:elevation="@dimen/cardview_elevation"
+    app:cardCornerRadius="@dimen/cardview_corner_radius"
+    app:strokeColor="@color/pale_blue"
+    app:strokeWidth="@dimen/stroke_width">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewNameOfPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:text="@string/title_of_place"
+            android:textAlignment="center"
+            android:textColor="@color/textDarkSecondary"
+            android:textSize="@dimen/text_size_name_cardview"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewKind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/margin_8dp"
+            android:paddingEnd="@dimen/margin_8dp"
+            android:text="@string/kind_of_place"
+            android:textAlignment="textStart"
+            android:textColor="@color/textDarkDisabled"
+            android:textSize="@dimen/text_size_kinds"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewRatingIcon" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewRatingIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_rating"
+            app:layout_constraintBottom_toTopOf="@+id/textViewKind"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barrierName" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_rating"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewRatingIcon"
+            app:layout_constraintStart_toEndOf="@+id/imageViewRatingIcon"
+            app:layout_constraintTop_toTopOf="@+id/imageViewRatingIcon"
+            tools:text="5" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="textViewNameOfPlace" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
