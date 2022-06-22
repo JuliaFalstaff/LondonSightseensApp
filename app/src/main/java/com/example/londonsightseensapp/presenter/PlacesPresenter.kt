@@ -59,11 +59,16 @@ class PlacesPresenter() :
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { repos ->
+                            viewState.showProgressBar()
                             placesListPresenter.placesList.clear()
                             placesListPresenter.placesList.addAll(repos.features)
                             viewState.updateList()
+                            viewState.hideProgressBar()
                         },
-                        { error -> viewState.showError(error) }
+                        { error ->
+                            viewState.hideProgressBar()
+                            viewState.showError(error)
+                        }
                 ))
     }
 

@@ -85,6 +85,14 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         Log.e(TAG, error.printStackTrace().toString())
     }
 
+    override fun showProgressBar() {
+        binding?.infoProgressBar?.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        binding?.infoProgressBar?.visibility = View.INVISIBLE
+    }
+
     @SuppressLint("SetTextI18n")
     override fun showState(state: String?) {
         binding?.textViewState?.text = "State: $state"

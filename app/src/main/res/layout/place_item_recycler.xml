@@ -19,10 +19,12 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewNameOfPlace"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_10dp"
             android:text="@string/title_of_place"
+            android:lines="2"
+            android:padding="@dimen/padding_10dp"
             android:textAlignment="center"
             android:textColor="@color/textDarkSecondary"
             android:textSize="@dimen/text_size_name_cardview"
