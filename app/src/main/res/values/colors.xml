@@ -21,6 +21,8 @@
     <color name="pale_red">#FC4647</color>
     <color name="pale_white">#FDFDEB</color>
 
+    <color name="ic_launch_background">#6EB0E0</color>
+
 
     <!-- Dark Text Color for Light Background -->
     <color name="textDarkPrimary">#DE000000</color> <!--DE for %87 opacity-->
