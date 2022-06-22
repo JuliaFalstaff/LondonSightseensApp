@@ -36,6 +36,7 @@ class PlaceInfoPresenter(
             placeInfo.loadPlaceInfo(it).observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             { detailedInfo ->
+                                viewState.showProgressBar()
                                 detailedInfo.wikipediaExtracts.textDescription.let { viewState.showDescription(it) }
                                 detailedInfo.preview.source?.let { viewState.showImage(it) }
                                 detailedInfo.wikipediaExtracts.textDescription?.let { viewState.showDescription(it) }
@@ -44,8 +45,10 @@ class PlaceInfoPresenter(
                                 detailedInfo.address.suburb.let { viewState.showSuburb(it) }
                                 detailedInfo.address.city.let { viewState.showCity(it) }
                                 detailedInfo.otm.let { viewState.openTripMap(it) }
+                                viewState.hideProgressBar()
                             },
                             { error ->
+                                viewState.hideProgressBar()
                                 viewState.showError(error)
                                 Log.e("TAG", error.printStackTrace().toString())
                             }

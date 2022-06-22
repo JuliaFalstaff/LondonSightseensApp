@@ -8,4 +8,6 @@ interface PlacesView : MvpView {
     fun init()
     fun updateList()
     fun showError(error: Throwable)
+    fun showProgressBar()
+    fun hideProgressBar()
 }

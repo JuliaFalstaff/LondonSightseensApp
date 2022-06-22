@@ -60,6 +60,14 @@ class PlacesFragment : MvpAppCompatFragment(), PlacesView, BackButtonListener {
         Log.e(TAG, error.printStackTrace().toString())
     }
 
+    override fun showProgressBar() {
+        binding?.progressBar?.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        binding?.progressBar?.visibility = View.INVISIBLE
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         binding = null

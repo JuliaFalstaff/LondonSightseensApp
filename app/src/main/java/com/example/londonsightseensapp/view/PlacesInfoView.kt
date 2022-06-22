@@ -15,4 +15,6 @@ interface PlacesInfoView : MvpView {
     fun showSuburb(suburb: String?)
     fun showRating(rate: String?)
     fun openTripMap(url: String?)
+    fun showProgressBar()
+    fun hideProgressBar()
 }
