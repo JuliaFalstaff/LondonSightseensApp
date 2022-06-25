@@ -20,4 +20,5 @@ interface PlacesInfoView : MvpView {
     fun hideProgressBar()
     fun saveToFavourite(place: Place)
     fun showSuccessSaveToast()
+    fun showErrorSavingFav(error: Throwable)
 }

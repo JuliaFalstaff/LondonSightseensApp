@@ -1,12 +1,16 @@
 package com.example.londonsightseensapp.model.room.dao
 
 import androidx.room.*
+import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.model.room.cache.RoomPlace
 
 @Dao
 interface PlaceDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPLace(place: RoomPlace)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertFavouritePLace(place: RoomFavouritePlace)
 
     @Delete
     fun deletePlace(place: RoomPlace)

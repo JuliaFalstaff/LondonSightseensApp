@@ -3,6 +3,7 @@ package com.example.londonsightseensapp.model.placeinfo
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.room.DataBaseApp
+import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.model.room.cache.RoomPlace
 import io.reactivex.rxjava3.core.Completable
 
@@ -22,9 +23,31 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
                 place.preview,
                 place.wikipediaExtracts,
                 place.point,
-                roomFeature?.id
+                roomFeature?.id,
+                 false
         )
         db.placeDAO.insertPLace(roomPlace)
+    }
+
+    override fun saveToFavDB(place: Place, featureId: Feature?) {
+        val roomFeature = featureId?.id.let { db.featureDAO.findById(it) }
+
+        val roomFavPlace = RoomFavouritePlace(
+            0,
+            place.xid,
+            place.name,
+            place.address,
+            place.kinds,
+            place.otm,
+            place.wikipediaUrl,
+            place.image,
+            place.preview,
+            place.wikipediaExtracts,
+            place.point,
+            roomFeature?.id,
+                true
+        )
+        db.placeDAO.insertFavouritePLace(roomFavPlace)
     }
 
     override fun getPlace(feature: Feature?): Place {
@@ -42,7 +65,4 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
                 roomFeature.point
         )
     }
-
-
-
 }

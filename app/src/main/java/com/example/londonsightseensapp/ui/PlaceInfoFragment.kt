@@ -100,6 +100,11 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
 
     override fun showSuccessSaveToast() {
         Toast.makeText(requireContext(), "Add To Favourite", Toast.LENGTH_SHORT).show()
+        binding?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+    }
+
+    override fun showErrorSavingFav(error: Throwable) {
+        Toast.makeText(requireContext(), "Error Add To Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")

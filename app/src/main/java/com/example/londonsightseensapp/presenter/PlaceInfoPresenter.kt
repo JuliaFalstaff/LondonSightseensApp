@@ -60,9 +60,11 @@ class PlaceInfoPresenter(
     fun addPlaceToFavourite(placeFav: Place) {
         disposable.add(
                 placeInfo.savePlaceToFavourite(placeFav, place).observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
+                        .subscribe( {
                             viewState.showSuccessSaveToast()
-                        }
+                        }, {
+                            viewState.showErrorSavingFav(it)
+                        })
         )
     }
 

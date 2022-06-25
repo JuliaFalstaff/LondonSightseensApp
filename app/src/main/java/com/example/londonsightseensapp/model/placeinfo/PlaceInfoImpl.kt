@@ -44,8 +44,7 @@ class PlaceInfoImpl(
 
     override fun savePlaceToFavourite(place: Place, featureId: Feature?): Completable {
        return Completable.fromCallable {
-            db.saveToDB(place, featureId)
+            db.saveToFavDB(place, featureId)
         }.subscribeOn(Schedulers.io())
-
     }
 }
