@@ -4,6 +4,7 @@ import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.room.DataBaseApp
 import com.example.londonsightseensapp.model.room.cache.RoomPlace
+import io.reactivex.rxjava3.core.Completable
 
 class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
     override fun saveToDB(place: Place, featureId: Feature?) {
@@ -41,4 +42,7 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
                 roomFeature.point
         )
     }
+
+
+
 }

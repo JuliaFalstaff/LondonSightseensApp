@@ -5,6 +5,8 @@ import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.retrofit.RetrofitApi
 import com.example.londonsightseensapp.network.INetworkState
+import io.reactivex.rxjava3.annotations.NonNull
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -39,4 +41,11 @@ class PlaceInfoImpl(
                     }
                 }
             }.subscribeOn(Schedulers.io())
+
+    override fun savePlaceToFavourite(place: Place, featureId: Feature?): Completable {
+       return Completable.fromCallable {
+            db.saveToDB(place, featureId)
+        }.subscribeOn(Schedulers.io())
+
+    }
 }

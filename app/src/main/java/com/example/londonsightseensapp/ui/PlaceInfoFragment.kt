@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.londonsightseensapp.App
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.FragmentPlaceInfoBinding
+import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.presenter.PlaceInfoPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener
@@ -91,6 +92,14 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
 
     override fun hideProgressBar() {
         binding?.infoProgressBar?.visibility = View.INVISIBLE
+    }
+
+    override fun saveToFavourite(place: Place) {
+        binding?.addToFavImageView?.setOnClickListener { presenter.addPlaceToFavourite(place) }
+    }
+
+    override fun showSuccessSaveToast() {
+        Toast.makeText(requireContext(), "Add To Favourite", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")

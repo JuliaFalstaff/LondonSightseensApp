@@ -1,6 +1,7 @@
 package com.example.londonsightseensapp.presenter
 
 import android.util.Log
+import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.placeinfo.IPlaceInfo
 import com.example.londonsightseensapp.view.PlacesInfoView
@@ -34,7 +35,7 @@ class PlaceInfoPresenter(
     private fun loadInfo() {
         disposable.add(place?.let { it ->
             placeInfo.loadPlaceInfo(it).observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
+                   .subscribe(
                             { detailedInfo ->
                                 viewState.showProgressBar()
                                 detailedInfo.wikipediaExtracts.textDescription.let { viewState.showDescription(it) }
@@ -46,6 +47,7 @@ class PlaceInfoPresenter(
                                 detailedInfo.address.city.let { viewState.showCity(it) }
                                 detailedInfo.otm.let { viewState.openTripMap(it) }
                                 viewState.hideProgressBar()
+                                viewState.saveToFavourite(detailedInfo)
                             },
                             { error ->
                                 viewState.hideProgressBar()
@@ -54,6 +56,14 @@ class PlaceInfoPresenter(
                             }
                     )
         })
+    }
+    fun addPlaceToFavourite(placeFav: Place) {
+        disposable.add(
+                placeInfo.savePlaceToFavourite(placeFav, place).observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            viewState.showSuccessSaveToast()
+                        }
+        )
     }
 
     fun backPressed(): Boolean {
