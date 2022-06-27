@@ -24,6 +24,9 @@ interface PlaceDAO {
     @Query("SELECT * FROM RoomPlace WHERE xid = :featureXid LIMIT 1")
     fun findForPlaceByFeatureXiD(featureXid: String?): RoomPlace
 
+    @Query("SELECT * FROM favourite_place WHERE xid = :featureXid LIMIT 1")
+    fun findForFavPlaceByXiD(featureXid: String?): RoomFavouritePlace
+
     @Query("SELECT * FROM RoomPlace WHERE featureId = :featureId LIMIT 1")
     fun findForPlaceByUid(featureId: String?): RoomPlace
 }

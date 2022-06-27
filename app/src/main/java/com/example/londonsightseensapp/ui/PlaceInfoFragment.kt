@@ -107,6 +107,18 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         Toast.makeText(requireContext(), "Error Add To Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
     }
 
+    override fun setRightIcon(place: Place) {
+        presenter.checkIsFav(place)
+    }
+
+    override fun setFavIcon() {
+        binding?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+    }
+
+    override fun setNotFavIcon() {
+        binding?.addToFavImageView?.setImageResource(R.drawable.ic_no_favorite_border)
+    }
+
     @SuppressLint("SetTextI18n")
     override fun showState(state: String?) {
         binding?.textViewState?.text = "State: $state"

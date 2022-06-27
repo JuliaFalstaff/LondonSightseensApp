@@ -35,7 +35,7 @@ class PlaceInfoPresenter(
     private fun loadInfo() {
         disposable.add(place?.let { it ->
             placeInfo.loadPlaceInfo(it).observeOn(AndroidSchedulers.mainThread())
-                   .subscribe(
+                    .subscribe(
                             { detailedInfo ->
                                 viewState.showProgressBar()
                                 detailedInfo.wikipediaExtracts.textDescription.let { viewState.showDescription(it) }
@@ -48,6 +48,7 @@ class PlaceInfoPresenter(
                                 detailedInfo.otm.let { viewState.openTripMap(it) }
                                 viewState.hideProgressBar()
                                 viewState.saveToFavourite(detailedInfo)
+                                viewState.setRightIcon(detailedInfo)
                             },
                             { error ->
                                 viewState.hideProgressBar()
@@ -57,15 +58,31 @@ class PlaceInfoPresenter(
                     )
         })
     }
+
     fun addPlaceToFavourite(placeFav: Place) {
         disposable.add(
                 placeInfo.savePlaceToFavourite(placeFav, place).observeOn(AndroidSchedulers.mainThread())
-                        .subscribe( {
+                        .subscribe({
                             viewState.showSuccessSaveToast()
                         }, {
                             viewState.showErrorSavingFav(it)
                         })
         )
+    }
+
+    fun checkIsFav(placeIsFav: Place) {
+        disposable.add(placeInfo.getFavData(placeIsFav, place).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            if (it.isFavourite) {
+                                viewState.setFavIcon()
+                            } else {
+                                viewState.setNotFavIcon()
+                            }
+                        }, {
+                    viewState.setNotFavIcon()
+                }
+                ))
     }
 
     fun backPressed(): Boolean {

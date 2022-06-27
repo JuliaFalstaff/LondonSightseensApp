@@ -6,6 +6,7 @@ import com.example.londonsightseensapp.model.room.DataBaseApp
 import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.model.room.cache.RoomPlace
 import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
 
 class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
     override fun saveToDB(place: Place, featureId: Feature?) {
@@ -63,6 +64,25 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
                 roomFeature.preview,
                 roomFeature.wikipediaExtracts,
                 roomFeature.point
+        )
+    }
+
+    override fun getFavData(place: Place, featureId: Feature?): RoomFavouritePlace {
+        val roomFeature = featureId?.properties?.xid.let { db.placeDAO.findForFavPlaceByXiD(it) }
+        return RoomFavouritePlace(
+                roomFeature.id,
+                roomFeature.xid,
+                roomFeature.name,
+                roomFeature.address,
+                roomFeature.kinds,
+                roomFeature.otm,
+                roomFeature.wikipediaUrl,
+                roomFeature.image,
+                roomFeature.preview,
+                roomFeature.wikipediaExtracts,
+                roomFeature.point,
+                roomFeature.featureId,
+                roomFeature.isFavourite
         )
     }
 }

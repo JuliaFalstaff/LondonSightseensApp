@@ -4,6 +4,7 @@ import com.example.londonsightseensapp.BuildConfig
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.retrofit.RetrofitApi
+import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.network.INetworkState
 import io.reactivex.rxjava3.annotations.NonNull
 import io.reactivex.rxjava3.core.Completable
@@ -45,6 +46,12 @@ class PlaceInfoImpl(
     override fun savePlaceToFavourite(place: Place, featureId: Feature?): Completable {
        return Completable.fromCallable {
             db.saveToFavDB(place, featureId)
+        }.subscribeOn(Schedulers.io())
+    }
+
+    override fun getFavData(place: Place, featureId: Feature?): Single<RoomFavouritePlace> {
+        return Single.fromCallable {
+            db.getFavData(place, featureId)
         }.subscribeOn(Schedulers.io())
     }
 }

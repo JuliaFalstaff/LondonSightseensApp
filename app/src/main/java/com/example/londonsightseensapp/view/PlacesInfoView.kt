@@ -21,4 +21,7 @@ interface PlacesInfoView : MvpView {
     fun saveToFavourite(place: Place)
     fun showSuccessSaveToast()
     fun showErrorSavingFav(error: Throwable)
+    fun setRightIcon(place: Place)
+    fun setFavIcon()
+    fun setNotFavIcon()
 }
