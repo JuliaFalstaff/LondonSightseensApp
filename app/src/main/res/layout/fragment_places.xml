@@ -16,12 +16,15 @@
             android:id="@+id/placeCollapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:collapsedTitleTextAppearance="@style/CollapsedAppBar"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleGravity="top|center"
-            app:expandedTitleMarginEnd="@dimen/padding_10dp"
-            app:expandedTitleMarginStart="@dimen/padding_10dp"
-            app:title="@string/header_fragment_places"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed" >
+            app:expandedTitleGravity="bottom|center"
+            app:expandedTitleMarginBottom="@dimen/margin_16dp"
+            app:expandedTitleMarginEnd="@dimen/margin_10dp"
+            app:expandedTitleMarginStart="@dimen/margin_10dp"
+            app:expandedTitleTextAppearance="@style/ExpandedAppBar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="@string/header_fragment_places">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageViewPictureHeader"
@@ -49,13 +52,14 @@
         android:id="@+id/recyclerViewPlace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
-        app:layout_constraintVertical_bias="0.0"
         app:spanCount="2"
         tools:listitem="@layout/place_item_recycler" />
 
@@ -63,6 +67,6 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="visible" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

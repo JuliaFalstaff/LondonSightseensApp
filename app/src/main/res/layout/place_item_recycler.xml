@@ -8,9 +8,9 @@
     android:layout_marginTop="@dimen/padding_10dp"
     android:layout_marginEnd="@dimen/padding_10dp"
     android:layout_marginBottom="@dimen/layout_marginBottom"
-    android:elevation="@dimen/cardview_elevation"
+    app:cardElevation="@dimen/cardview_default_elevation"
     app:cardCornerRadius="@dimen/cardview_corner_radius"
-    app:strokeColor="@color/pale_blue"
+    app:cardBackgroundColor="@color/card_view_background"
     app:strokeWidth="@dimen/stroke_width">
 
     <androidx.constraintlayout.widget.ConstraintLayout
