@@ -10,4 +10,5 @@ interface IPlaceInfo {
     fun loadPlaceInfo(featureId: Feature?): Single<Place>
     fun savePlaceToFavourite(place: Place, featureId: Feature?) : Completable
     fun getFavData(place: Place, featureId: Feature?): Single<RoomFavouritePlace>
+    fun delete(place: Place, featureId: Feature?): Completable
 }

@@ -35,6 +35,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     private var binding: FragmentPlaceInfoBinding? = null
+    private var isFavourite = false
 
     val presenter by moxyPresenter {
         PlaceInfoPresenter(arguments?.getParcelable(PLACE)).apply {
@@ -94,8 +95,16 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         binding?.infoProgressBar?.visibility = View.INVISIBLE
     }
 
-    override fun saveToFavourite(place: Place) {
-        binding?.addToFavImageView?.setOnClickListener { presenter.addPlaceToFavourite(place) }
+    override fun clickToFavouriteIcon(place: Place) {
+        binding?.addToFavImageView?.setOnClickListener {
+            if (!isFavourite){
+                presenter.addPlaceToFavourite(place)
+                setFavIcon()
+            } else {
+                presenter.deletePlaceFromFavourite(place)
+                setNotFavIcon()
+            }
+        }
     }
 
     override fun showSuccessSaveToast() {
@@ -107,16 +116,30 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         Toast.makeText(requireContext(), "Error Add To Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
     }
 
-    override fun setRightIcon(place: Place) {
+    override fun updateIconFavourite(place: Place) {
         presenter.checkIsFav(place)
     }
 
     override fun setFavIcon() {
         binding?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+        isFavourite = true
     }
 
     override fun setNotFavIcon() {
         binding?.addToFavImageView?.setImageResource(R.drawable.ic_no_favorite_border)
+        isFavourite = false
+    }
+
+    override fun showSuccessDeleteToast() {
+        Toast.makeText(requireContext(), "Success Delete From Favourite", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showErrorDeleteToast(error: Throwable) {
+        Toast.makeText(requireContext(), "Error Delete From Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun deleteFromFavourite() {
+        TODO("Not yet implemented")
     }
 
     @SuppressLint("SetTextI18n")

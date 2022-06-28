@@ -85,4 +85,24 @@ class RoomPlaceCacheImpl(private val db: DataBaseApp) : IRoomPlaceCache {
                 roomFeature.isFavourite
         )
     }
+
+    override fun delete(place: Place, featureId: Feature?) {
+        val roomFeature = featureId?.properties?.xid.let { db.placeDAO.findForFavPlaceByXiD(it) }
+        val favRoom = RoomFavouritePlace(
+                roomFeature.id,
+                roomFeature.xid,
+                roomFeature.name,
+                roomFeature.address,
+                roomFeature.kinds,
+                roomFeature.otm,
+                roomFeature.wikipediaUrl,
+                roomFeature.image,
+                roomFeature.preview,
+                roomFeature.wikipediaExtracts,
+                roomFeature.point,
+                roomFeature.featureId,
+                roomFeature.isFavourite
+        )
+        db.placeDAO.deleteFavPlace(favRoom)
+    }
 }

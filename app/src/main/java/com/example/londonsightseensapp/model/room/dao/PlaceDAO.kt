@@ -15,6 +15,9 @@ interface PlaceDAO {
     @Delete
     fun deletePlace(place: RoomPlace)
 
+    @Delete
+    fun deleteFavPlace(place: RoomFavouritePlace)
+
     @Update
     fun updatePlace(place: RoomPlace)
 

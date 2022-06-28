@@ -10,4 +10,5 @@ interface IRoomPlaceCache {
     fun saveToFavDB(place: Place, featureId: Feature?)
     fun getPlace(feature: Feature?): Place
     fun getFavData(place: Place, featureId: Feature?): RoomFavouritePlace
+    fun delete(place: Place, featureId: Feature?)
 }

@@ -46,9 +46,9 @@ class PlaceInfoPresenter(
                                 detailedInfo.address.suburb.let { viewState.showSuburb(it) }
                                 detailedInfo.address.city.let { viewState.showCity(it) }
                                 detailedInfo.otm.let { viewState.openTripMap(it) }
+                                viewState.clickToFavouriteIcon(detailedInfo)
+                                viewState.updateIconFavourite(detailedInfo)
                                 viewState.hideProgressBar()
-                                viewState.saveToFavourite(detailedInfo)
-                                viewState.setRightIcon(detailedInfo)
                             },
                             { error ->
                                 viewState.hideProgressBar()
@@ -68,6 +68,17 @@ class PlaceInfoPresenter(
                             viewState.showErrorSavingFav(it)
                         })
         )
+    }
+
+    fun deletePlaceFromFavourite(placeFav: Place) {
+        disposable.add(placeInfo.delete(placeFav, place).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            viewState.showSuccessDeleteToast()
+                        }, {
+                    viewState.showErrorDeleteToast(it)
+                }
+                ))
     }
 
     fun checkIsFav(placeIsFav: Place) {

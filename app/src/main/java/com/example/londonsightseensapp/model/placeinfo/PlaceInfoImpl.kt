@@ -54,4 +54,10 @@ class PlaceInfoImpl(
             db.getFavData(place, featureId)
         }.subscribeOn(Schedulers.io())
     }
+
+    override fun delete(place: Place, featureId: Feature?): Completable {
+       return Completable.fromCallable {
+           db.delete(place, featureId)
+       }.subscribeOn(Schedulers.io())
+    }
 }
