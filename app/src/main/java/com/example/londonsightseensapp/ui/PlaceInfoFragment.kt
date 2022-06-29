@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.londonsightseensapp.App
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.FragmentPlaceInfoBinding
+import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.presenter.PlaceInfoPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener
@@ -34,6 +35,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     private var binding: FragmentPlaceInfoBinding? = null
+    private var isFavourite = false
 
     val presenter by moxyPresenter {
         PlaceInfoPresenter(arguments?.getParcelable(PLACE)).apply {
@@ -91,6 +93,53 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
 
     override fun hideProgressBar() {
         binding?.infoProgressBar?.visibility = View.INVISIBLE
+    }
+
+    override fun clickToFavouriteIcon(place: Place) {
+        binding?.addToFavImageView?.setOnClickListener {
+            if (!isFavourite){
+                presenter.addPlaceToFavourite(place)
+                setFavIcon()
+            } else {
+                presenter.deletePlaceFromFavourite(place)
+                setNotFavIcon()
+            }
+        }
+    }
+
+    override fun showSuccessSaveToast() {
+        Toast.makeText(requireContext(), "Add To Favourite", Toast.LENGTH_SHORT).show()
+        binding?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+    }
+
+    override fun showErrorSavingFav(error: Throwable) {
+        Toast.makeText(requireContext(), "Error Add To Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun updateIconFavourite(place: Place) {
+        presenter.checkIsFav(place)
+    }
+
+    override fun setFavIcon() {
+        binding?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+        isFavourite = true
+    }
+
+    override fun setNotFavIcon() {
+        binding?.addToFavImageView?.setImageResource(R.drawable.ic_no_favorite_border)
+        isFavourite = false
+    }
+
+    override fun showSuccessDeleteToast() {
+        Toast.makeText(requireContext(), "Success Delete From Favourite", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showErrorDeleteToast(error: Throwable) {
+        Toast.makeText(requireContext(), "Error Delete From Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun deleteFromFavourite() {
+        TODO("Not yet implemented")
     }
 
     @SuppressLint("SetTextI18n")

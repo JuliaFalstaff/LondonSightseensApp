@@ -1,6 +1,7 @@
 package com.example.londonsightseensapp.ui
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.londonsightseensapp.App
@@ -56,6 +57,11 @@ class MainActivity : MvpAppCompatActivity(), IMainView {
     override fun onResumeFragments() {
         super.onResumeFragments()
         navigationHolder.setNavigator(navigator)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_bottom_navigation, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onPause() {

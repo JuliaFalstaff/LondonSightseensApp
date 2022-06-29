@@ -1,6 +1,7 @@
 package com.example.londonsightseensapp.presenter
 
 import android.util.Log
+import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.model.placeinfo.IPlaceInfo
 import com.example.londonsightseensapp.view.PlacesInfoView
@@ -45,6 +46,8 @@ class PlaceInfoPresenter(
                                 detailedInfo.address.suburb.let { viewState.showSuburb(it) }
                                 detailedInfo.address.city.let { viewState.showCity(it) }
                                 detailedInfo.otm.let { viewState.openTripMap(it) }
+                                viewState.clickToFavouriteIcon(detailedInfo)
+                                viewState.updateIconFavourite(detailedInfo)
                                 viewState.hideProgressBar()
                             },
                             { error ->
@@ -54,6 +57,43 @@ class PlaceInfoPresenter(
                             }
                     )
         })
+    }
+
+    fun addPlaceToFavourite(placeFav: Place) {
+        disposable.add(
+                placeInfo.savePlaceToFavourite(placeFav, place).observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            viewState.showSuccessSaveToast()
+                        }, {
+                            viewState.showErrorSavingFav(it)
+                        })
+        )
+    }
+
+    fun deletePlaceFromFavourite(placeFav: Place) {
+        disposable.add(placeInfo.delete(placeFav, place).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            viewState.showSuccessDeleteToast()
+                        }, {
+                    viewState.showErrorDeleteToast(it)
+                }
+                ))
+    }
+
+    fun checkIsFav(placeIsFav: Place) {
+        disposable.add(placeInfo.getFavData(placeIsFav, place).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            if (it.isFavourite) {
+                                viewState.setFavIcon()
+                            } else {
+                                viewState.setNotFavIcon()
+                            }
+                        }, {
+                    viewState.setNotFavIcon()
+                }
+                ))
     }
 
     fun backPressed(): Boolean {

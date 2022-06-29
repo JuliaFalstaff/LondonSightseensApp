@@ -9,7 +9,7 @@ import com.example.londonsightseensapp.model.dataDTO.placeinfo.Point
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.Preview
 import com.example.londonsightseensapp.model.dataDTO.placeinfo.WikipediaExtracts
 
-@Entity(
+@Entity(tableName = "favourite_place",
         foreignKeys = [ForeignKey(
                 entity = RoomFeature::class,
                 parentColumns = ["id"],
@@ -17,7 +17,7 @@ import com.example.londonsightseensapp.model.dataDTO.placeinfo.WikipediaExtracts
                 onDelete = ForeignKey.CASCADE
         )]
 )
-data class RoomPlace(
+data class RoomFavouritePlace(
         @PrimaryKey(autoGenerate = true)
         val id: Int,
         val xid: String?,
