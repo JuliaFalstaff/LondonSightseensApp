@@ -2,6 +2,8 @@ package com.example.londonsightseensapp.di
 
 import androidx.room.Room
 import com.example.londonsightseensapp.App
+import com.example.londonsightseensapp.model.favouriteplaces.IRoomFavouriteListPlaces
+import com.example.londonsightseensapp.model.favouriteplaces.RoomFavouriteListPlacesImpl
 import com.example.londonsightseensapp.model.placeinfo.IRoomPlaceCache
 import com.example.londonsightseensapp.model.placeinfo.RoomPlaceCacheImpl
 import com.example.londonsightseensapp.model.places.IRoomFeatureCache
@@ -33,4 +35,9 @@ class CacheModule {
     @Provides
     fun placeInfoCache(database: DataBaseApp): IRoomPlaceCache =
             RoomPlaceCacheImpl(database)
+
+    @Singleton
+    @Provides
+    fun getAllFavouriteListPlaces(db: DataBaseApp): IRoomFavouriteListPlaces =
+            RoomFavouriteListPlacesImpl(db)
 }

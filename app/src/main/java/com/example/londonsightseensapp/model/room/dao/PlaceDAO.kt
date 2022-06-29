@@ -21,6 +21,9 @@ interface PlaceDAO {
     @Update
     fun updatePlace(place: RoomPlace)
 
+    @Query("SELECT * FROM favourite_place")
+    fun getAllFavourites(): List<RoomFavouritePlace>
+
     @Query("SELECT * FROM RoomPlace WHERE name = :placeName LIMIT 1")
     fun findByName(placeName: String): RoomPlace?
 

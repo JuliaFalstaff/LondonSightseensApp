@@ -1,12 +1,11 @@
 package com.example.londonsightseensapp.presenter
 
-import com.example.londonsightseensapp.model.dataDTO.places.Feature
-import com.example.londonsightseensapp.model.places.IPlacesRepo
+import com.example.londonsightseensapp.model.favouriteplaces.IRoomFavouriteListPlaces
+import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.navigation.IScreens
+import com.example.londonsightseensapp.view.FavPlacesItemView
+import com.example.londonsightseensapp.view.IFavouritePlacesListPresenter
 import com.example.londonsightseensapp.view.IFavouriteView
-import com.example.londonsightseensapp.view.IPlacesListPresenter
-import com.example.londonsightseensapp.view.PlacesItemView
-import com.example.londonsightseensapp.view.PlacesView
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -17,7 +16,7 @@ class FavouritePlacesPresenter() :
         MvpPresenter<IFavouriteView>() {
 
     @Inject
-    lateinit var place: IPlacesRepo
+    lateinit var place: IRoomFavouriteListPlaces
 
     @Inject
     lateinit var router: Router
@@ -25,44 +24,43 @@ class FavouritePlacesPresenter() :
     @Inject
     lateinit var screen: IScreens
 
-    class PlacesListPresenter : IPlacesListPresenter {
-        val placesList = mutableListOf<Feature>()
+    class FavouritePlacesListPresenter : IFavouritePlacesListPresenter {
+        val favPlacesList = mutableListOf<RoomFavouritePlace>()
 
-        override var itemClickListener: ((PlacesItemView) -> Unit)? = null
+        override var itemClickListener: ((FavPlacesItemView) -> Unit)? = null
 
-        override fun bindView(view: PlacesItemView) {
-            val place = placesList[view.positionItem]
-            view.setName(place.properties.name)
-            view.setKind(place.properties.kinds)
-            view.setRate(place.properties.rate)
+        override fun bindView(view: FavPlacesItemView) {
+            val place = favPlacesList[view.positionItem]
+            view.setName(place.name.toString())
+            view.setKind(place.kinds.toString())
+            view.setAddress(place.address.city.toString())
         }
 
-        override fun getCount(): Int = placesList.size
+        override fun getCount(): Int = favPlacesList.size
     }
 
-    var placesListPresenter = PlacesListPresenter()
+    var favPlacesListPresenter = FavouritePlacesListPresenter()
     private var disposable = CompositeDisposable()
 
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.init()
-        loadData()
+        getAllFavouritePlaces()
 
-        placesListPresenter.itemClickListener = { place ->
-            openPlaceInfo(place)
-        }
+//        favPlacesListPresenter.itemClickListener = { place ->
+//            openPlaceInfo(place)
+//        }
     }
 
-    private fun loadData() {
-
-        disposable.addAll(place.loadPlacesByGeoParams()
+    private fun getAllFavouritePlaces() {
+        disposable.addAll(place.getAllFavouriteListPlaces()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { repos ->
+                        {
                             viewState.showProgressBar()
-                            placesListPresenter.placesList.clear()
-                            placesListPresenter.placesList.addAll(repos.features)
+                            favPlacesListPresenter.favPlacesList.clear()
+                            favPlacesListPresenter.favPlacesList.addAll(it)
                             viewState.updateList()
                             viewState.hideProgressBar()
                         },
@@ -73,9 +71,9 @@ class FavouritePlacesPresenter() :
                 ))
     }
 
-    private fun openPlaceInfo(place: PlacesItemView) {
-        router.navigateTo(screen.placesInfo(placesListPresenter.placesList[place.positionItem]))
-    }
+//    private fun openPlaceInfo(place: FavPlacesItemView) {
+//        router.navigateTo(screen.favouritePlace(favPlacesListPresenter.favPlacesList[place.positionItem]))
+//    }
 
     fun backPressed(): Boolean {
         router.exit()
