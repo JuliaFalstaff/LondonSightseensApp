@@ -6,21 +6,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.londonsightseensapp.databinding.FavPlaceItemRecyclerBinding
-import com.example.londonsightseensapp.databinding.PlaceItemRecyclerBinding
 import com.example.londonsightseensapp.utils.convertToReadable
 import com.example.londonsightseensapp.view.FavPlacesItemView
 import com.example.londonsightseensapp.view.IFavouritePlacesListPresenter
-import com.example.londonsightseensapp.view.IPlacesListPresenter
-import com.example.londonsightseensapp.view.PlacesItemView
 
 
 class FavouritePlacesRVAdapter(
-        val presenter: IFavouritePlacesListPresenter,
+    val presenter: IFavouritePlacesListPresenter,
 ) : RecyclerView.Adapter<FavouritePlacesRVAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouritePlacesRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): FavouritePlacesRVAdapter.ViewHolder {
         return ViewHolder(
-                FavPlaceItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            FavPlaceItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         ).apply {
             itemView.setOnClickListener {
                 presenter.itemClickListener?.invoke(this)
@@ -37,8 +37,8 @@ class FavouritePlacesRVAdapter(
     override fun getItemCount(): Int = presenter.getCount()
 
     inner class ViewHolder(val binding: FavPlaceItemRecyclerBinding) :
-            RecyclerView.ViewHolder(binding.root),
-            FavPlacesItemView {
+        RecyclerView.ViewHolder(binding.root),
+        FavPlacesItemView {
 
         override var positionItem: Int = -1
 

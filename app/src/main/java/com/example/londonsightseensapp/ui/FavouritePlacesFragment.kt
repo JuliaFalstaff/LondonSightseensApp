@@ -9,15 +9,11 @@ import android.widget.Toast
 import com.example.londonsightseensapp.App
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.adapters.FavouritePlacesRVAdapter
-import com.example.londonsightseensapp.adapters.PlacesRVAdapter
 import com.example.londonsightseensapp.databinding.FragmentFavouritePlacesBinding
-import com.example.londonsightseensapp.databinding.FragmentPlacesBinding
 import com.example.londonsightseensapp.model.room.DataBaseApp
 import com.example.londonsightseensapp.presenter.FavouritePlacesPresenter
-import com.example.londonsightseensapp.presenter.PlacesPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener
 import com.example.londonsightseensapp.view.IFavouriteView
-import com.example.londonsightseensapp.view.PlacesView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
@@ -40,9 +36,9 @@ class FavouritePlacesFragment : MvpAppCompatFragment(), IFavouriteView, BackButt
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentFavouritePlacesBinding.inflate(inflater, container, false)
         return binding?.root
