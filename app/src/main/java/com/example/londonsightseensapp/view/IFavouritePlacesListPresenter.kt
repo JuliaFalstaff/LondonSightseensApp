@@ -1,6 +1,6 @@
 package com.example.londonsightseensapp.view
 
-interface IFavouritePlacesListPresenter: IListPresenter<FavPlacesItemView>
+interface IFavouritePlacesListPresenter: IFavListPresenter<FavPlacesItemView>
 
 
 

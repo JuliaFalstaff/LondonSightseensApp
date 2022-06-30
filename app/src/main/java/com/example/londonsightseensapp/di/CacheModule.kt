@@ -9,6 +9,7 @@ import com.example.londonsightseensapp.model.placeinfo.RoomPlaceCacheImpl
 import com.example.londonsightseensapp.model.places.IRoomFeatureCache
 import com.example.londonsightseensapp.model.places.RoomFeatureCacheImpl
 import com.example.londonsightseensapp.model.room.DataBaseApp
+import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

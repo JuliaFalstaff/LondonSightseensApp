@@ -17,21 +17,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewFavPlace"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewNameOfPlace"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/padding_10dp"
-            android:text="@string/title_of_place"
             android:lines="2"
             android:padding="@dimen/padding_10dp"
+            android:text="@string/title_of_place"
             android:textAlignment="center"
             android:textColor="@color/textDarkSecondary"
             android:textSize="@dimen/text_size_name_cardview"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewFavPlace"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/favIconImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_no_favorite_border"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNameOfPlace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewNameOfPlace"
+            app:layout_constraintTop_toTopOf="@+id/textViewNameOfPlace" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewKind"
@@ -39,12 +58,23 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/padding_10dp"
             android:text="@string/kind_of_place"
+            android:layout_marginTop="@dimen/margin_10dp"
             android:textAlignment="textStart"
             android:textColor="@color/textDarkDisabled"
             android:textSize="@dimen/text_size_kinds"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewNameOfPlace" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewFavPlace" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iconToOpenTripMapSiteFromFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/geo_icon"
+            app:layout_constraintBottom_toTopOf="@+id/textViewKind"
+            app:layout_constraintEnd_toStartOf="@+id/textViewNameOfPlace"
+            app:layout_constraintStart_toEndOf="@+id/imageViewFavPlace"
+            app:layout_constraintTop_toTopOf="@+id/textViewNameOfPlace" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewAddress"
@@ -52,11 +82,18 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_rating"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/textViewKind"
-            app:layout_constraintStart_toStartOf="@+id/textViewKind"
-            app:layout_constraintTop_toBottomOf="@+id/textViewKind"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewFavPlace"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameOfPlace"
             tools:text="Address" />
 
-
+        <TextView
+            android:id="@+id/favPlaceDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewKind"
+            tools:text="Sample of description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

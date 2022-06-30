@@ -138,10 +138,6 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         Toast.makeText(requireContext(), "Error Delete From Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
     }
 
-    override fun deleteFromFavourite() {
-        TODO("Not yet implemented")
-    }
-
     @SuppressLint("SetTextI18n")
     override fun showState(state: String?) {
         binding?.textViewState?.text = "State: $state"

@@ -26,5 +26,4 @@ interface PlacesInfoView : MvpView {
     fun setNotFavIcon()
     fun showSuccessDeleteToast()
     fun showErrorDeleteToast(error: Throwable)
-    fun deleteFromFavourite()
 }

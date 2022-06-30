@@ -1,6 +1,8 @@
 package com.example.londonsightseensapp.navigation
 
+import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
+import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.ui.FavouritePlacesFragment
 import com.example.londonsightseensapp.ui.PlaceInfoFragment
 import com.example.londonsightseensapp.ui.PlacesFragment
