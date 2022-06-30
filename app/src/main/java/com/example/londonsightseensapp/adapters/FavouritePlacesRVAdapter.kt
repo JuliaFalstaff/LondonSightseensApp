@@ -66,6 +66,10 @@ class FavouritePlacesRVAdapter(
             binding.favIconImageView.setImageResource(R.drawable.ic_baseline_favorite_24)
         }
 
+        override fun setNoFavIcon() {
+            binding.favIconImageView.setImageResource(R.drawable.ic_no_favorite_border)
+        }
+
         override fun showImage(imageUrl: String?) {
             Glide.with(itemView.context)
                 .load(imageUrl)
@@ -74,10 +78,9 @@ class FavouritePlacesRVAdapter(
                 .into(binding.imageViewFavPlace)
         }
 
-        override fun deleteFav(place: RoomFavouritePlace) {
+        override fun setClickIcon(view: FavPlacesItemView) {
             binding.favIconImageView.setOnClickListener {
-                presenter.itemClickListener?.deleteFromFav(place)
-                binding.favIconImageView.setImageResource(R.drawable.ic_no_favorite_border)
+                presenter.deleteFromFav(view)
             }
         }
     }

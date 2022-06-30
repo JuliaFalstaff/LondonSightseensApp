@@ -11,7 +11,6 @@ import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.adapters.FavouritePlacesRVAdapter
 import com.example.londonsightseensapp.databinding.FragmentFavouritePlacesBinding
 import com.example.londonsightseensapp.model.room.DataBaseApp
-import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.presenter.FavouritePlacesPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener
 import com.example.londonsightseensapp.view.IFavouriteView
@@ -69,9 +68,6 @@ class FavouritePlacesFragment : MvpAppCompatFragment(), IFavouriteView, BackButt
         binding?.progressBar?.visibility = View.INVISIBLE
     }
 
-    override fun deleteFromFav(place: RoomFavouritePlace) {
-        presenter.deletePlaceFromFavourite(place)
-    }
 
     override fun showSuccessDeleteToast() {
         Toast.makeText(context, "Success delete", Toast.LENGTH_SHORT).show()

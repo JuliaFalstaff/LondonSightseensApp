@@ -25,5 +25,4 @@ interface AppComponent {
     fun inject(usersPresenter: PlacesPresenter)
     fun inject(repositoryPresenter: PlaceInfoPresenter)
     fun inject(favouritePresenter: FavouritePlacesPresenter)
-
 }

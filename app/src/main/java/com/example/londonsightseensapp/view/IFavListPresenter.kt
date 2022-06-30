@@ -6,4 +6,5 @@ interface IFavListPresenter<V : IItemView> {
     var itemClickListener: OnClickFavIcon?
     fun bindView(view: V)
     fun getCount(): Int
+    fun deleteFromFav(view: V)
 }
