@@ -14,8 +14,7 @@ import javax.inject.Inject
 
 class PlaceInfoPresenter(
         val place: Feature?,
-) :
-        MvpPresenter<PlacesInfoView>() {
+) :  MvpPresenter<PlacesInfoView>() {
 
     @Inject
     lateinit var placeInfo: IPlaceInfo

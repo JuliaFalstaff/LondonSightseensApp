@@ -93,7 +93,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun clickToFavouriteIcon(place: Place) {
-        binding?.addToFavImageView?.setOnClickListener {
+        binding?.includeBottomSheetLayout?.addToFavImageView?.setOnClickListener {
             if (!isFavourite) {
                 presenter.addPlaceToFavourite(place)
                 setFavIcon()
@@ -106,7 +106,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
 
     override fun showSuccessSaveToast() {
         Toast.makeText(requireContext(), "Add To Favourite", Toast.LENGTH_SHORT).show()
-        binding?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+        binding?.includeBottomSheetLayout?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
     }
 
     override fun showErrorSavingFav(error: Throwable) {
@@ -118,12 +118,12 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun setFavIcon() {
-        binding?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+        binding?.includeBottomSheetLayout?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
         isFavourite = true
     }
 
     override fun setNotFavIcon() {
-        binding?.addToFavImageView?.setImageResource(R.drawable.ic_no_favorite_border)
+        binding?.includeBottomSheetLayout?.addToFavImageView?.setImageResource(R.drawable.ic_no_favorite_border)
         isFavourite = false
     }
 
