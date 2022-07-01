@@ -13,4 +13,5 @@ interface IFavouriteView: MvpView {
     fun hideProgressBar()
     fun showSuccessDeleteToast()
     fun showErrorDeleteToast(error: Throwable)
+    fun openTripMap(otm: String)
 }

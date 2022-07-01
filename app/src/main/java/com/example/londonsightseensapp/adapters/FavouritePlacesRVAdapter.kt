@@ -2,6 +2,7 @@ package com.example.londonsightseensapp.adapters
 
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +24,11 @@ class FavouritePlacesRVAdapter(
     ): FavouritePlacesRVAdapter.ViewHolder {
         return ViewHolder(
                 FavPlaceItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
+        ).apply {
+            itemView.setOnClickListener {
+                presenter.itemClickListener?.invoke(this)
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: FavouritePlacesRVAdapter.ViewHolder, position: Int) {

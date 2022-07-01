@@ -1,5 +1,7 @@
 package com.example.londonsightseensapp.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -67,6 +69,14 @@ class FavouritePlacesFragment : MvpAppCompatFragment(), IFavouriteView, BackButt
     override fun showErrorDeleteToast(error: Throwable) {
         Toast.makeText(context, "Error delete", Toast.LENGTH_SHORT).show()
     }
+
+    override fun openTripMap(otm: String) {
+        val i = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(otm)
+        }
+        startActivity(i)
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()

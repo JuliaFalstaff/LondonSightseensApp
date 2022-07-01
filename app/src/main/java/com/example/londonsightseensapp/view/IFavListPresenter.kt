@@ -1,10 +1,10 @@
 package com.example.londonsightseensapp.view
 
-import com.example.londonsightseensapp.adapters.FavouritePlacesRVAdapter
 
 interface IFavListPresenter<V : IItemView> {
-    var itemClickListener: OnClickFavIcon?
+    var itemClickListener: ((V) -> Unit)?
     fun bindView(view: V)
     fun getCount(): Int
     fun deleteFromFav(view: V)
+    fun openTripMap(view: V)
 }

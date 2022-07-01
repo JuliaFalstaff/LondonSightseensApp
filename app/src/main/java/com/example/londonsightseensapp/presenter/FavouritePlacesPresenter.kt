@@ -3,10 +3,7 @@ package com.example.londonsightseensapp.presenter
 import com.example.londonsightseensapp.model.favouriteplaces.IRoomFavouriteListPlaces
 import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.navigation.IScreens
-import com.example.londonsightseensapp.view.FavPlacesItemView
-import com.example.londonsightseensapp.view.IFavouritePlacesListPresenter
-import com.example.londonsightseensapp.view.IFavouriteView
-import com.example.londonsightseensapp.view.OnClickFavIcon
+import com.example.londonsightseensapp.view.*
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -28,7 +25,7 @@ class FavouritePlacesPresenter() :
     inner class FavouritePlacesListPresenter : IFavouritePlacesListPresenter {
         val favPlacesList = mutableListOf<RoomFavouritePlace>()
 
-        override var itemClickListener: OnClickFavIcon? = null
+        override var itemClickListener: ((FavPlacesItemView) -> Unit)? = null
 
         override fun bindView(view: FavPlacesItemView) {
             val place = favPlacesList[view.positionItem]
@@ -57,6 +54,11 @@ class FavouritePlacesPresenter() :
                     }
                     ))
         }
+
+        override fun openTripMap(view: FavPlacesItemView) {
+            val favPlace = favPlacesList[view.positionItem]
+            viewState.openTripMap(favPlace.otm)
+        }
     }
 
     var favPlacesListPresenter = FavouritePlacesListPresenter()
@@ -67,7 +69,9 @@ class FavouritePlacesPresenter() :
         super.onFirstViewAttach()
         viewState.init()
         getAllFavouritePlaces()
-
+        favPlacesListPresenter.itemClickListener = {
+            viewState.openTripMap(favPlacesListPresenter.favPlacesList[it.positionItem].otm)
+        }
     }
 
     private fun getAllFavouritePlaces() {
