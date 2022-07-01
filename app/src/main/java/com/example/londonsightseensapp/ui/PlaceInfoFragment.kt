@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.londonsightseensapp.App
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.FragmentPlaceInfoBinding
-import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import com.example.londonsightseensapp.model.dataDTO.places.Feature
 import com.example.londonsightseensapp.presenter.PlaceInfoPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener
@@ -92,13 +91,13 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
         binding?.infoProgressBar?.visibility = View.INVISIBLE
     }
 
-    override fun clickToFavouriteIcon(place: Place) {
+    override fun clickToFavouriteIcon() {
         binding?.includeBottomSheetLayout?.addToFavImageView?.setOnClickListener {
             if (!isFavourite) {
-                presenter.addPlaceToFavourite(place)
+                presenter.addNewPlaceToFavourite()
                 setFavIcon()
             } else {
-                presenter.deletePlaceFromFavourite(place)
+                presenter.deletePlaceFromFavourite()
                 setNotFavIcon()
             }
         }
@@ -111,10 +110,6 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
 
     override fun showErrorSavingFav(error: Throwable) {
         Toast.makeText(requireContext(), "Error Add To Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun updateIconFavourite(place: Place) {
-        presenter.checkIsFav(place)
     }
 
     override fun setFavIcon() {

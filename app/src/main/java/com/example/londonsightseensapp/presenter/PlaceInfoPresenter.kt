@@ -7,7 +7,9 @@ import com.example.londonsightseensapp.model.placeinfo.IPlaceInfo
 import com.example.londonsightseensapp.view.PlacesInfoView
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import javax.inject.Inject
 
@@ -45,9 +47,9 @@ class PlaceInfoPresenter(
                                 detailedInfo.address.suburb.let { viewState.showSuburb(it) }
                                 detailedInfo.address.city.let { viewState.showCity(it) }
                                 detailedInfo.otm.let { viewState.openTripMap(it) }
-                                viewState.clickToFavouriteIcon(detailedInfo)
-                                viewState.updateIconFavourite(detailedInfo)
+                                viewState.clickToFavouriteIcon()
                                 viewState.hideProgressBar()
+                                checkIsFav(detailedInfo)
                             },
                             { error ->
                                 viewState.hideProgressBar()
@@ -58,26 +60,26 @@ class PlaceInfoPresenter(
         })
     }
 
-    fun addPlaceToFavourite(placeFav: Place) {
-        disposable.add(
-                placeInfo.savePlaceToFavourite(placeFav, place).observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            viewState.showSuccessSaveToast()
-                        }, {
-                            viewState.showErrorSavingFav(it)
-                        })
+    fun addNewPlaceToFavourite() {
+        disposable.add(placeInfo.loadPlaceInfo(place).flatMapCompletable {
+                     placeInfo.savePlaceToFavourite(it, place)
+                 }.observeOn(AndroidSchedulers.mainThread()).subscribe({
+                     viewState.showSuccessSaveToast()
+                 }, {
+                     viewState.showErrorSavingFav(it)
+                 })
         )
     }
 
-    fun deletePlaceFromFavourite(placeFav: Place) {
-        disposable.add(placeInfo.delete(placeFav, place).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            viewState.showSuccessDeleteToast()
-                        }, {
-                    viewState.showErrorDeleteToast(it)
-                }
-                ))
+    fun deletePlaceFromFavourite() {
+        disposable.add(placeInfo.loadPlaceInfo(place).flatMapCompletable {
+            placeInfo.delete(it, place)
+        }.observeOn(AndroidSchedulers.mainThread()).subscribe({
+            viewState.showSuccessDeleteToast()
+        }, {
+            viewState.showErrorDeleteToast(it)
+        })
+        )
     }
 
     fun checkIsFav(placeIsFav: Place) {
