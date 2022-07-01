@@ -4,28 +4,25 @@ package com.example.londonsightseensapp.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.FavPlaceItemRecyclerBinding
-import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
-import com.example.londonsightseensapp.model.room.cache.RoomFavouritePlace
 import com.example.londonsightseensapp.utils.convertToReadable
 import com.example.londonsightseensapp.view.FavPlacesItemView
 import com.example.londonsightseensapp.view.IFavouritePlacesListPresenter
 
 
 class FavouritePlacesRVAdapter(
-    val presenter: IFavouritePlacesListPresenter,
+        val presenter: IFavouritePlacesListPresenter,
 ) : RecyclerView.Adapter<FavouritePlacesRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+            parent: ViewGroup,
+            viewType: Int,
     ): FavouritePlacesRVAdapter.ViewHolder {
         return ViewHolder(
-            FavPlaceItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                FavPlaceItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -38,8 +35,8 @@ class FavouritePlacesRVAdapter(
     override fun getItemCount(): Int = presenter.getCount()
 
     inner class ViewHolder(val binding: FavPlaceItemRecyclerBinding) :
-        RecyclerView.ViewHolder(binding.root),
-        FavPlacesItemView {
+            RecyclerView.ViewHolder(binding.root),
+            FavPlacesItemView {
 
         override var positionItem: Int = -1
 
@@ -72,10 +69,10 @@ class FavouritePlacesRVAdapter(
 
         override fun showImage(imageUrl: String?) {
             Glide.with(itemView.context)
-                .load(imageUrl)
-                .placeholder(R.drawable.progress_animation)
-                .error(R.drawable.ic_load_error_vector)
-                .into(binding.imageViewFavPlace)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.progress_animation)
+                    .error(R.drawable.ic_load_error_vector)
+                    .into(binding.imageViewFavPlace)
         }
 
         override fun setClickIcon(view: FavPlacesItemView) {

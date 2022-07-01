@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +23,6 @@ import moxy.ktx.moxyPresenter
 class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonListener {
 
     companion object {
-        const val TAG = "TAG"
         const val PLACE = "Place"
         fun newInstance(placeId: Feature): PlaceInfoFragment {
             val args = Bundle().apply { putParcelable(PLACE, placeId) }
@@ -82,9 +80,8 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun showError(error: Throwable) {
-        Toast.makeText(context, getString(R.string.place_info_error), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Error: Check your Internet. ${error.cause?.message}", Toast.LENGTH_LONG).show()
         binding?.iconToOpenTripMapSite?.visibility = View.GONE
-        Log.e(TAG, error.printStackTrace().toString())
     }
 
     override fun showProgressBar() {
@@ -97,7 +94,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
 
     override fun clickToFavouriteIcon(place: Place) {
         binding?.addToFavImageView?.setOnClickListener {
-            if (!isFavourite){
+            if (!isFavourite) {
                 presenter.addPlaceToFavourite(place)
                 setFavIcon()
             } else {

@@ -14,7 +14,7 @@ import moxy.MvpPresenter
 import javax.inject.Inject
 
 class FavouritePlacesPresenter() :
-    MvpPresenter<IFavouriteView>() {
+        MvpPresenter<IFavouriteView>() {
 
     @Inject
     lateinit var place: IRoomFavouriteListPlaces
@@ -46,16 +46,16 @@ class FavouritePlacesPresenter() :
         override fun deleteFromFav(view: FavPlacesItemView) {
             val favPlace = favPlacesList[view.positionItem]
             disposable.add(place.deleteFavouritePlace(favPlace)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    {
-                        view.setNoFavIcon()
-                        viewState.showSuccessDeleteToast()
-                        getAllFavouritePlaces()
-                    }, {
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            {
+                                view.setNoFavIcon()
+                                viewState.showSuccessDeleteToast()
+                                getAllFavouritePlaces()
+                            }, {
                         viewState.showErrorDeleteToast(it)
                     }
-                ))
+                    ))
         }
     }
 
@@ -72,20 +72,20 @@ class FavouritePlacesPresenter() :
 
     private fun getAllFavouritePlaces() {
         disposable.addAll(place.getAllFavouriteListPlaces()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    viewState.showProgressBar()
-                    favPlacesListPresenter.favPlacesList.clear()
-                    favPlacesListPresenter.favPlacesList.addAll(it)
-                    viewState.updateList()
-                    viewState.hideProgressBar()
-                },
-                { error ->
-                    viewState.hideProgressBar()
-                    viewState.showError(error)
-                }
-            ))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            viewState.showProgressBar()
+                            favPlacesListPresenter.favPlacesList.clear()
+                            favPlacesListPresenter.favPlacesList.addAll(it)
+                            viewState.updateList()
+                            viewState.hideProgressBar()
+                        },
+                        { error ->
+                            viewState.hideProgressBar()
+                            viewState.showError(error)
+                        }
+                ))
     }
 
     fun backPressed(): Boolean {

@@ -1,7 +1,6 @@
 package com.example.londonsightseensapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,23 +9,17 @@ import com.example.londonsightseensapp.App
 import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.adapters.PlacesRVAdapter
 import com.example.londonsightseensapp.databinding.FragmentPlacesBinding
-import com.example.londonsightseensapp.model.room.DataBaseApp
 import com.example.londonsightseensapp.presenter.PlacesPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener
 import com.example.londonsightseensapp.view.PlacesView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import javax.inject.Inject
 
 class PlacesFragment : MvpAppCompatFragment(), PlacesView, BackButtonListener {
 
     companion object {
         fun newInstance(): PlacesFragment = PlacesFragment()
-        private const val TAG = "TAG"
     }
-
-    @Inject
-    lateinit var dataBase: DataBaseApp
 
     private var binding: FragmentPlacesBinding? = null
     private var adapter: PlacesRVAdapter? = null
@@ -56,8 +49,7 @@ class PlacesFragment : MvpAppCompatFragment(), PlacesView, BackButtonListener {
     }
 
     override fun showError(error: Throwable) {
-        Toast.makeText(context, getString(R.string.place_info_error), Toast.LENGTH_SHORT).show()
-        Log.e(TAG, error.printStackTrace().toString())
+        Toast.makeText(context, "Error: Check your Internet. ${error.cause?.message}", Toast.LENGTH_LONG).show()
     }
 
     override fun showProgressBar() {
