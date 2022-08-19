@@ -1,5 +1,6 @@
 package com.example.londonsightseensapp.view
 
+import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 
@@ -15,4 +16,13 @@ interface PlacesInfoView : MvpView {
     fun showSuburb(suburb: String?)
     fun showRating(rate: String?)
     fun openTripMap(url: String?)
+    fun showProgressBar()
+    fun hideProgressBar()
+    fun clickToFavouriteIcon()
+    fun showSuccessSaveToast()
+    fun showErrorSavingFav(error: Throwable)
+    fun setFavIcon()
+    fun setNotFavIcon()
+    fun showSuccessDeleteToast()
+    fun showErrorDeleteToast(error: Throwable)
 }

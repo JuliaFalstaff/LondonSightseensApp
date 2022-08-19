@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +22,6 @@ import moxy.ktx.moxyPresenter
 class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonListener {
 
     companion object {
-        const val TAG = "TAG"
         const val PLACE = "Place"
         fun newInstance(placeId: Feature): PlaceInfoFragment {
             val args = Bundle().apply { putParcelable(PLACE, placeId) }
@@ -34,6 +32,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     private var binding: FragmentPlaceInfoBinding? = null
+    private var isFavourite = false
 
     val presenter by moxyPresenter {
         PlaceInfoPresenter(arguments?.getParcelable(PLACE)).apply {
@@ -80,9 +79,55 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun showError(error: Throwable) {
-        Toast.makeText(context, getString(R.string.place_info_error), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Error: Check your Internet. ${error.cause?.message}", Toast.LENGTH_LONG).show()
         binding?.iconToOpenTripMapSite?.visibility = View.GONE
-        Log.e(TAG, error.printStackTrace().toString())
+    }
+
+    override fun showProgressBar() {
+        binding?.infoProgressBar?.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressBar() {
+        binding?.infoProgressBar?.visibility = View.INVISIBLE
+    }
+
+    override fun clickToFavouriteIcon() {
+        binding?.includeBottomSheetLayout?.addToFavImageView?.setOnClickListener {
+            if (!isFavourite) {
+                presenter.addNewPlaceToFavourite()
+                setFavIcon()
+            } else {
+                presenter.deletePlaceFromFavourite()
+                setNotFavIcon()
+            }
+        }
+    }
+
+    override fun showSuccessSaveToast() {
+        Toast.makeText(requireContext(), "Add To Favourite", Toast.LENGTH_SHORT).show()
+        binding?.includeBottomSheetLayout?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+    }
+
+    override fun showErrorSavingFav(error: Throwable) {
+        Toast.makeText(requireContext(), "Error Add To Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun setFavIcon() {
+        binding?.includeBottomSheetLayout?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
+        isFavourite = true
+    }
+
+    override fun setNotFavIcon() {
+        binding?.includeBottomSheetLayout?.addToFavImageView?.setImageResource(R.drawable.ic_no_favorite_border)
+        isFavourite = false
+    }
+
+    override fun showSuccessDeleteToast() {
+        Toast.makeText(requireContext(), "Success Delete From Favourite", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showErrorDeleteToast(error: Throwable) {
+        Toast.makeText(requireContext(), "Error Delete From Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")

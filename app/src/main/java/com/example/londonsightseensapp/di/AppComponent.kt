@@ -1,5 +1,6 @@
 package com.example.londonsightseensapp.di
 
+import com.example.londonsightseensapp.presenter.FavouritePlacesPresenter
 import com.example.londonsightseensapp.presenter.MainPresenter
 import com.example.londonsightseensapp.presenter.PlaceInfoPresenter
 import com.example.londonsightseensapp.presenter.PlacesPresenter
@@ -23,4 +24,5 @@ interface AppComponent {
     fun inject(mainPresenter: MainPresenter)
     fun inject(usersPresenter: PlacesPresenter)
     fun inject(repositoryPresenter: PlaceInfoPresenter)
+    fun inject(favouritePresenter: FavouritePlacesPresenter)
 }

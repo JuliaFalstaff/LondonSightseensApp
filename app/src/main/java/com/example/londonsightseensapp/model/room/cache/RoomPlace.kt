@@ -35,4 +35,5 @@ data class RoomPlace(
         @Embedded
         val point: Point,
         val featureId: String?,
+        val isFavourite: Boolean
 )
