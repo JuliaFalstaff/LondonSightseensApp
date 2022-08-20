@@ -23,12 +23,14 @@
             android:id="@+id/textViewPlaceName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4dp"
             android:layout_marginTop="@dimen/margin_10dp"
-            android:layout_marginBottom="@dimen/margin_10dp"
             android:text="@string/title_of_place"
             android:textSize="@dimen/text_size_name"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewRatingPlaceIcon"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageViewPlacePicture" />
 
@@ -36,9 +38,8 @@
             android:id="@+id/imageViewRatingPlaceIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_5dp"
             android:src="@drawable/ic_rating"
-            app:layout_constraintBottom_toTopOf="@+id/textViewState"
+            app:layout_constraintEnd_toStartOf="@+id/textViewRate"
             app:layout_constraintStart_toEndOf="@+id/textViewPlaceName"
             app:layout_constraintTop_toTopOf="@+id/textViewPlaceName" />
 
@@ -46,11 +47,13 @@
             android:id="@+id/textViewRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_4dp"
             android:textSize="@dimen/text_size_rating"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textViewState"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewRatingPlaceIcon"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewRatingPlaceIcon"
-            app:layout_constraintTop_toTopOf="@+id/textViewPlaceName"
+            app:layout_constraintTop_toTopOf="@+id/imageViewRatingPlaceIcon"
             tools:text="5" />
 
         <TextView
@@ -96,11 +99,12 @@
             android:id="@+id/iconToOpenTripMapSite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_16dp"
             android:src="@drawable/geo_icon"
             app:layout_constraintBottom_toBottomOf="@+id/textViewRoad"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textViewRate"
-            app:layout_constraintTop_toTopOf="@+id/textViewState" />
+            app:layout_constraintStart_toEndOf="@+id/textViewState"
+            app:layout_constraintTop_toBottomOf="@+id/textViewState" />
 
         <ProgressBar
             android:id="@+id/infoProgressBar"

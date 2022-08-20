@@ -19,9 +19,7 @@
             app:collapsedTitleTextAppearance="@style/CollapsedAppBar"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="bottom|center"
-            app:expandedTitleMarginBottom="@dimen/margin_16dp"
-            app:expandedTitleMarginEnd="@dimen/margin_10dp"
-            app:expandedTitleMarginStart="@dimen/margin_10dp"
+            app:expandedTitleMargin="@dimen/expandedTitleMargin"
             app:expandedTitleTextAppearance="@style/ExpandedAppBar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="@string/header_fragment_places">
@@ -51,7 +49,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPlace"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="@dimen/margin_8dp"
         android:layout_marginEnd="@dimen/margin_8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

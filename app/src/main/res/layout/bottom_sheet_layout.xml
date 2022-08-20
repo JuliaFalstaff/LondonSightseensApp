@@ -8,6 +8,7 @@
     android:background="#E9E9E9"
     app:behavior_hideable="false"
     app:behavior_peekHeight="@dimen/peek_height_bottom_sheet_behavior"
+    app:behavior_saveFlags="skipCollapsed"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <View
@@ -23,6 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addToFavImageView"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bottomSheetLine"
         tools:text="@string/example_header" />
@@ -44,6 +47,7 @@
         android:layout_margin="@dimen/margin_8dp"
         android:src="@drawable/ic_no_favorite_border"
         app:layout_constraintBottom_toTopOf="@+id/bottomSheetDescription"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bottomSheetDescriptionHeader"
         app:layout_constraintTop_toTopOf="@+id/bottomSheetDescriptionHeader" />
 </androidx.constraintlayout.widget.ConstraintLayout>
