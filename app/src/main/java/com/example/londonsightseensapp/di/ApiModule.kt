@@ -16,12 +16,12 @@ import javax.inject.Singleton
 @Module
 class ApiModule {
 
-    @Named("baseUrl")
+    @NameBaseUrl
     @Provides
     fun baseUrl(): String = "https://api.opentripmap.com/0.1/"
 
     @Provides
-    fun api(@Named("baseUrl") baseUrl: String): RetrofitApi = Retrofit.Builder()
+    fun api(@NameBaseUrl baseUrl: String): RetrofitApi = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))

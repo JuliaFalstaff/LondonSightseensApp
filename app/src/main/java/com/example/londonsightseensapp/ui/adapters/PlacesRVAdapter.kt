@@ -1,4 +1,4 @@
-package com.example.londonsightseensapp.adapters
+package com.example.londonsightseensapp.ui.adapters
 
 
 import android.annotation.SuppressLint

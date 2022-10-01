@@ -5,7 +5,7 @@
     android:id="@+id/bottomSheetContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E9E9E9"
+    android:background="@color/bottom_sheet_color"
     app:behavior_hideable="false"
     app:behavior_peekHeight="@dimen/peek_height_bottom_sheet_behavior"
     app:behavior_saveFlags="skipCollapsed"

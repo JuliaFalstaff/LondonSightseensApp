@@ -38,7 +38,7 @@
             android:text="@string/title_of_place"
             android:textAlignment="center"
             android:textColor="@color/textDarkSecondary"
-            android:textSize="18sp"
+            android:textSize="@dimen/title_place_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/favIconImageView"
             app:layout_constraintStart_toEndOf="@+id/imageViewFavPlace"

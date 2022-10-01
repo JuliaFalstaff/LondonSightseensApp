@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="card_view_background">#55424242</color>
+    <color name="bottom_sheet_color">#61000000</color>
+
+
+    <color name="red_bus">#FD170B</color>
+    <color name="breeze">#68D0B9</color>
+    <color name="deep_breeze">#217E86</color>
+    <color name="apricot">#C79B79</color>
+    <color name="pale_apricot">#FDDBBB</color>
+    <color name="yellow">#FDB11E</color>
+
+    <color name="white_bottom_sheet">#f6f6fa</color>
+    <color name="pale_blue">#257A80</color>
+    <color name="pale_red">#FC4647</color>
+    <color name="pale_white">#FDFDEB</color>
+
+    <color name="ic_launch_background">#6EB0E0</color>
+
+    <!-- White Text Color for Dark Background -->
+    <color name="textDarkPrimary">#FFFFFF</color> <!--%100 opacity-->
+    <color name="textDarkSecondary">#B2FFFFFF</color> <!--B2 for %70 opacity-->
+    <color name="textDarkDisabled">#80FFFFFF</color> <!--80 for %50 opacity-->
+</resources>

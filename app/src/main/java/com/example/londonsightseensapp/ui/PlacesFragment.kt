@@ -6,8 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.londonsightseensapp.App
-import com.example.londonsightseensapp.R
-import com.example.londonsightseensapp.adapters.PlacesRVAdapter
+import com.example.londonsightseensapp.ui.adapters.PlacesRVAdapter
 import com.example.londonsightseensapp.databinding.FragmentPlacesBinding
 import com.example.londonsightseensapp.presenter.PlacesPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener

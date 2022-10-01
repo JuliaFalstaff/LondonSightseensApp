@@ -22,7 +22,7 @@ class CacheModule {
     fun database(app: App): DataBaseApp = Room.databaseBuilder(
             app,
             DataBaseApp::class.java,
-            "database.db"
+            DB_NAME
     )
             .fallbackToDestructiveMigration()
             .build()
@@ -41,4 +41,8 @@ class CacheModule {
     @Provides
     fun getAllFavouriteListPlaces(db: DataBaseApp): IRoomFavouriteListPlaces =
             RoomFavouriteListPlacesImpl(db)
+
+    companion object {
+        const val DB_NAME = "database.db"
+    }
 }

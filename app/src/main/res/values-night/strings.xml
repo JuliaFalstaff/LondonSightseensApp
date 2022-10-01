@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">London Eye</string>
+    <string name="error_get_db">Database hasn\'t been created</string>
+    <string name="header_fragment_places">Find an interesting place to visit:</string>
+    <string name="title_of_place">Name of Place</string>
+    <string name="kind_of_place">Kind of Place</string>
+    <string name="route_of_place">Route</string>
+    <string name="rating_of_place">Rating</string>
+    <string name="example_header">Name of Place</string>
+    <string name="place_info_error">Error: </string>
     <string name="favourite">Favourite</string>
     <string name="place_list">Place List</string>
 </resources>

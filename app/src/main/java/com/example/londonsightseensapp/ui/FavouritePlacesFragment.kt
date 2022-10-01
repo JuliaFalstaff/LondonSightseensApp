@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.londonsightseensapp.App
-import com.example.londonsightseensapp.R
-import com.example.londonsightseensapp.adapters.FavouritePlacesRVAdapter
+import com.example.londonsightseensapp.ui.adapters.FavouritePlacesRVAdapter
 import com.example.londonsightseensapp.databinding.FragmentFavouritePlacesBinding
 import com.example.londonsightseensapp.presenter.FavouritePlacesPresenter
 import com.example.londonsightseensapp.utils.BackButtonListener

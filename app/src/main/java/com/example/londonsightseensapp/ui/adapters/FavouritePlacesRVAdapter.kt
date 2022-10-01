@@ -1,8 +1,7 @@
-package com.example.londonsightseensapp.adapters
+package com.example.londonsightseensapp.ui.adapters
 
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -39,7 +38,7 @@ class FavouritePlacesRVAdapter(
 
     override fun getItemCount(): Int = presenter.getCount()
 
-    inner class ViewHolder(val binding: FavPlaceItemRecyclerBinding) :
+    inner class ViewHolder(private val binding: FavPlaceItemRecyclerBinding) :
             RecyclerView.ViewHolder(binding.root),
             FavPlacesItemView {
 
