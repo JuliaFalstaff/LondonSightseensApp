@@ -1,5 +1,10 @@
 # London Eye
  London Eye App demonstrates information about popular sightseens in London
+ 
+ | Main Screen | Detail info Screen | Favourite Screen |
+| ------------- | ------------- |------------- |
+| <img src="app/src/main/res/drawable/main_places_screen.png" width="200" height="400" /> | <img src="app/src/main/res/drawable/place_info_screen.png" width="200" height="400" /> | <img src="app/src/main/res/drawable/favourite_places_screen.png" width="200" height="400" />
+
 ## Tech stack & Open-source libraries
 * Minimum SDK level 23
 #### 1. Architecture
