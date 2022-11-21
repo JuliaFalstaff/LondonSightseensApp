@@ -79,7 +79,7 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun showError(error: Throwable) {
-        Toast.makeText(context, "Error: Check your Internet. ${error.cause?.message}", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "${error.cause?.message}", Toast.LENGTH_LONG).show()
         binding?.iconToOpenTripMapSite?.visibility = View.GONE
     }
 
@@ -104,12 +104,12 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun showSuccessSaveToast() {
-        Toast.makeText(requireContext(), "Add To Favourite", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.add_to_fav), Toast.LENGTH_SHORT).show()
         binding?.includeBottomSheetLayout?.addToFavImageView?.setImageResource(R.drawable.ic_baseline_favorite_24)
     }
 
     override fun showErrorSavingFav(error: Throwable) {
-        Toast.makeText(requireContext(), "Error Add To Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), " ${error.message}", Toast.LENGTH_SHORT).show()
     }
 
     override fun setFavIcon() {
@@ -123,11 +123,11 @@ class PlaceInfoFragment : MvpAppCompatFragment(), PlacesInfoView, BackButtonList
     }
 
     override fun showSuccessDeleteToast() {
-        Toast.makeText(requireContext(), "Success Delete From Favourite", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), getString(R.string.delete_from_fav), Toast.LENGTH_SHORT).show()
     }
 
     override fun showErrorDeleteToast(error: Throwable) {
-        Toast.makeText(requireContext(), "Error Delete From Favourite: ${error.message}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), " ${error.message}", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("SetTextI18n")

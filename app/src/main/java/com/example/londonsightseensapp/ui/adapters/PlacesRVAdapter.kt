@@ -12,12 +12,12 @@ import com.example.londonsightseensapp.view.PlacesItemView
 
 
 class PlacesRVAdapter(
-        val presenter: IPlacesListPresenter,
+    val presenter: IPlacesListPresenter
 ) : RecyclerView.Adapter<PlacesRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlacesRVAdapter.ViewHolder {
         return ViewHolder(
-                PlaceItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            PlaceItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         ).apply {
             itemView.setOnClickListener {
                 presenter.itemClickListener?.invoke(this)
@@ -33,9 +33,9 @@ class PlacesRVAdapter(
 
     override fun getItemCount(): Int = presenter.getCount()
 
-    inner class ViewHolder(val binding: PlaceItemRecyclerBinding) :
-            RecyclerView.ViewHolder(binding.root),
-            PlacesItemView {
+    inner class ViewHolder(private val binding: PlaceItemRecyclerBinding) :
+        RecyclerView.ViewHolder(binding.root),
+        PlacesItemView {
 
         override var positionItem: Int = -1
 

@@ -1,6 +1,5 @@
 package com.example.londonsightseensapp.view
 
-import com.example.londonsightseensapp.model.dataDTO.placeinfo.Place
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 

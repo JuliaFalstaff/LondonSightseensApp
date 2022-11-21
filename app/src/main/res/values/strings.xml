@@ -10,4 +10,8 @@
     <string name="place_info_error">Error: </string>
     <string name="favourite">Favourite</string>
     <string name="place_list">Place List</string>
+    <string name="delete_from_fav">Success Delete From Favourite</string>
+    <string name="add_to_fav">Add To Favourite</string>
+    <string name="error_delete">Error delete</string>
+    <string name="success_delete">Success delete</string>
 </resources>

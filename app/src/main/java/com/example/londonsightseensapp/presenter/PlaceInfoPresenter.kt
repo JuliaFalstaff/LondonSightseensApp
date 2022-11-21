@@ -7,16 +7,14 @@ import com.example.londonsightseensapp.model.placeinfo.IPlaceInfo
 import com.example.londonsightseensapp.view.PlacesInfoView
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 import javax.inject.Inject
 
 
 class PlaceInfoPresenter(
-        val place: Feature?,
-) :  MvpPresenter<PlacesInfoView>() {
+    val place: Feature?,
+) : MvpPresenter<PlacesInfoView>() {
 
     @Inject
     lateinit var placeInfo: IPlaceInfo
@@ -34,40 +32,48 @@ class PlaceInfoPresenter(
     }
 
     private fun loadInfo() {
-        disposable.add(place?.let { it ->
+        disposable.add(place.let { it ->
             placeInfo.loadPlaceInfo(it).observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            { detailedInfo ->
-                                viewState.showProgressBar()
-                                detailedInfo.wikipediaExtracts.textDescription.let { viewState.showDescription(it) }
-                                detailedInfo.preview.source?.let { viewState.showImage(it) }
-                                detailedInfo.wikipediaExtracts.textDescription?.let { viewState.showDescription(it) }
-                                detailedInfo.address.road?.let { viewState.showRoad(it) }
-                                detailedInfo.address.stateDistrict?.let { viewState.showState(it) }
-                                detailedInfo.address.suburb.let { viewState.showSuburb(it) }
-                                detailedInfo.address.city.let { viewState.showCity(it) }
-                                detailedInfo.otm.let { viewState.openTripMap(it) }
-                                viewState.clickToFavouriteIcon()
-                                viewState.hideProgressBar()
-                                checkIsFav(detailedInfo)
-                            },
-                            { error ->
-                                viewState.hideProgressBar()
-                                viewState.showError(error)
-                                Log.e("TAG", error.printStackTrace().toString())
-                            }
-                    )
+                .subscribe(
+                    { detailedInfo ->
+                        viewState.showProgressBar()
+                        detailedInfo.wikipediaExtracts.textDescription.let {
+                            viewState.showDescription(
+                                it
+                            )
+                        }
+                        detailedInfo.preview.source?.let { viewState.showImage(it) }
+                        detailedInfo.wikipediaExtracts.textDescription?.let {
+                            viewState.showDescription(
+                                it
+                            )
+                        }
+                        detailedInfo.address.road?.let { viewState.showRoad(it) }
+                        detailedInfo.address.stateDistrict?.let { viewState.showState(it) }
+                        detailedInfo.address.suburb.let { viewState.showSuburb(it) }
+                        detailedInfo.address.city.let { viewState.showCity(it) }
+                        detailedInfo.otm.let { viewState.openTripMap(it) }
+                        viewState.clickToFavouriteIcon()
+                        viewState.hideProgressBar()
+                        checkIsFav(detailedInfo)
+                    },
+                    { error ->
+                        viewState.hideProgressBar()
+                        viewState.showError(error)
+                        Log.e("TAG", error.printStackTrace().toString())
+                    }
+                )
         })
     }
 
     fun addNewPlaceToFavourite() {
         disposable.add(placeInfo.loadPlaceInfo(place).flatMapCompletable {
-                     placeInfo.savePlaceToFavourite(it, place)
-                 }.observeOn(AndroidSchedulers.mainThread()).subscribe({
-                     viewState.showSuccessSaveToast()
-                 }, {
-                     viewState.showErrorSavingFav(it)
-                 })
+            placeInfo.savePlaceToFavourite(it, place)
+        }.observeOn(AndroidSchedulers.mainThread()).subscribe({
+            viewState.showSuccessSaveToast()
+        }, {
+            viewState.showErrorSavingFav(it)
+        })
         )
     }
 
@@ -83,18 +89,19 @@ class PlaceInfoPresenter(
     }
 
     fun checkIsFav(placeIsFav: Place) {
-        disposable.add(placeInfo.getFavData(placeIsFav, place).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            if (it.isFavourite) {
-                                viewState.setFavIcon()
-                            } else {
-                                viewState.setNotFavIcon()
-                            }
-                        }, {
+        disposable.add(placeInfo.getFavData(placeIsFav, place)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    if (it.isFavourite) {
+                        viewState.setFavIcon()
+                    } else {
+                        viewState.setNotFavIcon()
+                    }
+                }, {
                     viewState.setNotFavIcon()
                 }
-                ))
+            ))
     }
 
     fun backPressed(): Boolean {

@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.londonsightseensapp.App
-import com.example.londonsightseensapp.ui.adapters.FavouritePlacesRVAdapter
+import com.example.londonsightseensapp.R
 import com.example.londonsightseensapp.databinding.FragmentFavouritePlacesBinding
 import com.example.londonsightseensapp.presenter.FavouritePlacesPresenter
+import com.example.londonsightseensapp.ui.adapters.FavouritePlacesRVAdapter
 import com.example.londonsightseensapp.utils.BackButtonListener
 import com.example.londonsightseensapp.view.IFavouriteView
 import moxy.MvpAppCompatFragment
@@ -30,9 +31,9 @@ class FavouritePlacesFragment : MvpAppCompatFragment(), IFavouriteView, BackButt
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentFavouritePlacesBinding.inflate(inflater, container, false)
         return binding?.root
@@ -50,7 +51,11 @@ class FavouritePlacesFragment : MvpAppCompatFragment(), IFavouriteView, BackButt
     }
 
     override fun showError(error: Throwable) {
-        Toast.makeText(context, "Error: Check your Internet. ${error.cause?.message}", Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            context,
+            "${error.cause?.message}",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun showProgressBar() {
@@ -62,11 +67,11 @@ class FavouritePlacesFragment : MvpAppCompatFragment(), IFavouriteView, BackButt
     }
 
     override fun showSuccessDeleteToast() {
-        Toast.makeText(context, "Success delete", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getString(R.string.success_delete), Toast.LENGTH_SHORT).show()
     }
 
     override fun showErrorDeleteToast(error: Throwable) {
-        Toast.makeText(context, "Error delete", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getString(R.string.error_delete), Toast.LENGTH_SHORT).show()
     }
 
     override fun openTripMap(otm: String) {
@@ -75,7 +80,6 @@ class FavouritePlacesFragment : MvpAppCompatFragment(), IFavouriteView, BackButt
         }
         startActivity(i)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
